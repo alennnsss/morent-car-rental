@@ -3,7 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import CatalogView from "../views/CatalogView.vue";
 const routes = [
     {
-        path: '/',
+        path: '/morent-car-rental',
         name: 'home',
         component: HomeView,
     },
