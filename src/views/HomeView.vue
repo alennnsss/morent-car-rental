@@ -92,7 +92,5 @@ onMounted(() => {
         border-radius: 4px;
         border: none;
     }
-    .fuel::before {
-        content: url(../);
-    }
+    
 </style>

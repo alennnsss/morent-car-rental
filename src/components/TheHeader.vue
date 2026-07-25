@@ -11,16 +11,16 @@
         </div>
     </div>
     <div class="navigation-box">
-        <router-link class="navigation-box__link" to="">
+        <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/heart.png" alt="heart">
         </router-link>
-        <router-link class="navigation-box__link" to="">
+        <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/notification.png" alt="heart">
         </router-link>
-        <router-link class="navigation-box__link" to="">
+        <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/settings.png" alt="heart">
         </router-link>
-        <router-link class="navigation-box__link" to="">
+        <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/profile.png" alt="heart">
         </router-link>
     </div>    
