@@ -5,6 +5,15 @@ import TheHeader from './components/TheHeader.vue';
 
 <template>
   <TheHeader />
-  <router-view/>
-  <TheBlocks />
+  <div class="container">
+    <TheBlocks />
+    <router-view/>
+  </div>  
+  
 </template>
+<style>
+  .container {
+    padding: 64px 32px;
+    background-color: #F6F7F9;
+  }
+</style>

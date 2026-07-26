@@ -21,7 +21,7 @@
             <img class="navigation-box__svg" src="../assets/icons/settings.png" alt="heart">
         </router-link>
         <router-link class="navigation-box__link" to="/">
-            <img class="navigation-box__svg" src="../assets/icons/profile.png" alt="heart">
+            <img class="navigation-box__svg" src="../assets/icons/people.png" alt="heart">
         </router-link>
     </div>    
   </header>
@@ -43,8 +43,8 @@
     
     .header-logo-box {
         display: flex;
-        gap: 64px;
         width: 100%;
+        gap: 32px;
     }
     .header-logo__title {
         color: #3563E9;
