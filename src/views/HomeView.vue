@@ -1,6 +1,9 @@
 <template>
   <div class="cars-grid">
-    <div v-for="car in cars" :key="car.id" class="car-card">
+    <template v-if="isLoading">
+        <CarsSkeleton v-for="value in 4" :key="value.id"/>
+    </template>
+    <div v-else v-for="car in cars" :key="car.id" class="car-card">
         <h2>{{ car.name }}</h2>
         <span class="car-card__span">{{ car.type }}</span>
         <img :src="car.image" :alt="car.name" class="car-card__img" />
@@ -35,10 +38,12 @@
 import { ref, onMounted } from 'vue'
 import { db }  from '../api/firebase'
 import { collection, getDocs } from 'firebase/firestore'
-
+import CarsSkeleton from '../components/CarsSkeleton.vue'
+const isLoading = ref(false)
 const cars = ref([])
 
 const fetchCars = async () => {
+    isLoading.value = true
     try {
         const querySnapshot = await getDocs(collection(db, 'cars'))
         cars.value = querySnapshot.docs.map(doc => ({
@@ -47,6 +52,8 @@ const fetchCars = async () => {
         }))
     } catch(e) {
         console.error('Error', e.message)  
+    } finally {
+        isLoading.value = false
     }
     
 }
