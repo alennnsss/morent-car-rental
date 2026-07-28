@@ -53,7 +53,7 @@
     }
     .blocks-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 2fr));
         gap: 32px;
         padding: 24px;
     }
@@ -117,5 +117,8 @@
         max-height: 140px;
         object-fit: contain;
         z-index: 1;
+    }
+    .rental-car__button:hover {
+        background-color: #0A196F;
     }
 </style>

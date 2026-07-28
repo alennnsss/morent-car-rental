@@ -127,4 +127,7 @@ onMounted(() => {
         width: 21.5px;
         height: 20.75px;
     }
+    button:hover {
+        background-color: #54A6FF;
+    }
 </style>
