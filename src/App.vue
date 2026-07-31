@@ -1,16 +1,9 @@
 <script setup>
-import TheBlocks from './components/TheBlocks.vue';
-import TheHeader from './components/TheHeader.vue';
-import TheFooter from './components/TheFooter.vue';
+
 </script>
 
 <template>
-  <TheHeader />
-  <div class="container">
-    <TheBlocks />
-    <router-view/>
-  </div>  
-  <TheFooter />
+  <router-view />
 </template>
 <style>
   .container {

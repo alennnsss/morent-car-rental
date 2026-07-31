@@ -99,6 +99,7 @@
     footer {
         height: 480px;
         gap: 36px;
+        background-color: white;
     }
     .footer {
         width: 100%;
@@ -167,5 +168,8 @@
     a {
         text-decoration: none;
         color: #13131399;
+    }
+    a:hover {
+        color:#3563E9;
     }
 </style>

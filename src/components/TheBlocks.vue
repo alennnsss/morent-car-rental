@@ -12,7 +12,7 @@
                 </p>
             </div>    
             <div class="blocks-container__image-box">
-                <button>
+                <button class="button1">
                     Rental Car
                 </button>
                 <img class="car-image" src="../assets/images/korvette.png" alt="korvette">
@@ -93,6 +93,19 @@
         display: flex;
         width: 100%;
     }
+    .button1 {
+        max-width: 150px;
+        width: 100;
+        height: 44px;
+        border-radius: 4px;
+        background-color: #3563E9;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+    }
+    .button1:hover {
+        background-color: #1a2c94;
+    }
     .blocks-container-box2 {
         background-color: #3563E9;
         display: flex;
@@ -103,6 +116,13 @@
     }
     .rental-car__button {
         background-color: #54A6FF;
+        max-width: 150px;
+        width: 100;
+        height: 44px;
+        border-radius: 4px;
+        color: white;
+        border: none;
+        padding: 10px 20px;
     }
     .blocks-container-box2__image {
         width: 50%;
