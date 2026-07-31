@@ -181,8 +181,8 @@ watch(limitPerPage, () => {
     }
     .show-more {
         background-color:#3563E9;
-        max-width: 156px;
-        width: 100;
+        max-width: 180px;
+        width: 100%;
         height: 44px;
         border-radius: 4px;
         color: white;
