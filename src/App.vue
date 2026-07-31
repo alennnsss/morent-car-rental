@@ -1,9 +1,10 @@
 <script setup>
-
+import TheToast from './components/TheToast.vue'
 </script>
 
 <template>
   <router-view />
+  <the-toast />
 </template>
 <style>
   .container {

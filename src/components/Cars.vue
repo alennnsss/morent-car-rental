@@ -1,12 +1,12 @@
 <template>
   <div class="cars-grid">
     <template v-if="isLoading">
-        <CarsSkeleton v-for="value in 4" :key="value.id"/>
+        <CarsSkeleton v-for="value in 4" :key="value"/>
     </template>
     <div v-else v-for="car in cars" :key="car.id" class="car-card">
         <div class="heart-div">
             <h2>{{ car.name }}</h2>
-            <button v-if="favoriteStore.favorites.includes(car.id)" @click="favoriteStore.toggleFavorite(car.id)" class="heart-button">
+            <button v-if="favoriteStore.favorites.includes(car.id)" @click="favoriteStore.toggleFavorite(car.id), toastStore.addToast()" class="heart-button">
                 <img class="heart-svg" src="../assets/icons/heart-red.png" alt="heart">
             </button>
             <button @click="favoriteStore.toggleFavorite(car.id)" v-else class="heart-button">
@@ -50,8 +50,9 @@ import { db }  from '../api/firebase.js'
 import { collection, getDocs, limit, query } from 'firebase/firestore'
 import CarsSkeleton from './CarsSkeleton.vue';
 import { useFavouriteStore } from '../stores/useFavouriteStore.js';
+import { useToastStore } from '../stores/useToastStore.js';
 
-
+const toastStore = useToastStore()
 const favoriteStore = useFavouriteStore()
 const isLoading = ref(false)
 const cars = ref([])
@@ -150,6 +151,7 @@ watch(limitPerPage, () => {
         padding: 10px 20px;
         border-radius: 4px;
         border: none;
+        cursor: pointer;
     }
     .rent-now__button:hover {
         background-color: #54A6FF;
@@ -181,13 +183,14 @@ watch(limitPerPage, () => {
     }
     .show-more {
         background-color:#3563E9;
-        max-width: 180px;
+        max-width: 156px;
         width: 100%;
         height: 44px;
         border-radius: 4px;
         color: white;
         border: none;
         padding: 10px 20px;
+        cursor: pointer;
     }
     .show-more:hover {
         background-color: #54A6FF;

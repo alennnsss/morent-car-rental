@@ -97,13 +97,13 @@
 
 <style scoped>
     footer {
-        height: 480px;
+        max-height: 580px;
         gap: 36px;
         background-color: white;
     }
     .footer {
         width: 100%;
-        height: 244px;
+        max-height: 244px;
         display: flex;
         justify-content: space-between;
     }
