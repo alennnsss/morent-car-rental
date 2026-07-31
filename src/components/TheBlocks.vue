@@ -94,8 +94,8 @@
         width: 100%;
     }
     .button1 {
-        max-width: 150px;
-        width: 100;
+        max-width: 180px;
+        width: 100%;
         height: 44px;
         border-radius: 4px;
         background-color: #3563E9;
@@ -116,8 +116,8 @@
     }
     .rental-car__button {
         background-color: #54A6FF;
-        max-width: 150px;
-        width: 100;
+        max-width: 180px;
+        width: 100%;
         height: 44px;
         border-radius: 4px;
         color: white;
