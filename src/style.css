@@ -6,5 +6,18 @@
   font-size: 16px;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
-
+:root {
+  --button-color: #54A6FF;
+  --button-dark-color: #3563E9;
+  --main-color: #F6F7F9;
+  --span-color: #90A3BF;
+  --white-color: white;
+  
+}
+body.dark-theme {
+  --main-color: #111827;
+  --card-color: #1F2937;
+  --button-color: #FFFFFF;
+  --span-color: #D1D5DB;
+}
      

@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="valueTheme">
     <div class="header-logo-box">
         <h1 class="header-logo__title">
             MORENT
@@ -23,13 +23,34 @@
         <router-link class="navigation-box__link  navigation-box__link-profile" to="/">
             <img class="navigation-box__svg" src="../assets/icons/people.png" alt="heart">
         </router-link>
+        <button @click="changeTheme" class="change-theme">
+            Change theme
+        </button>
     </div>    
   </header>
 </template>
 
 <script setup>
-    import { ref, onMounted } from 'vue';
-    const nameInputRef = ref(null)
+    import { ref, onMounted, computed } from 'vue';
+
+    const currentTheme = ref(localStorage.getItem('theme') || 'white')
+    const nameInputRef = ref(null);
+
+    const valueTheme = computed(() => {
+        if(currentTheme.value === 'dark') return 'dark'
+        return 'white'
+    })
+    const changeTheme = () => {
+        currentTheme.value = currentTheme.value === 'dark' ? 'white' : 'dark';
+        localStorage.setItem('theme', currentTheme.value);
+        if(currentTheme.value === 'dark') {
+            document.body.classList.add('dark-theme')
+            document.body.classList.remove('white-theme')
+        } else {
+            document.body.classList.add('white-theme')
+            document.body.classList.remove('dark-theme')
+        }
+    }
     onMounted(() => {
         if(nameInputRef.value) {
             nameInputRef.value.focus()
@@ -102,6 +123,11 @@
     .navigation-box__svg {
         height: 17.8px;
         width: 20px;
+    }
+    .change-theme {
+        border: none;
+        background-color: white;
+        cursor: pointer;
     }
     @media screen and (max-width: 768px){
         .navigation-box__link {

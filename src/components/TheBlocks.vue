@@ -15,7 +15,7 @@
                 <button class="button1">
                     Rental Car
                 </button>
-                <img class="car-image" src="../assets/images/korvette.png" alt="korvette">
+                <img class="car-image koe" src="../assets/images/korvette.png" alt="korvette">
             </div>    
         </div>
         <div class="blocks-container-box box2">
@@ -35,6 +35,7 @@
             </div>
         </div>
     </div>
+    
 </template>
 
 <script setup>
@@ -56,16 +57,19 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 2fr));
         gap: 32px;
         padding: 24px;
+        max-height: 360px;
+        height: 100%;
     }
     .blocks-container-box {
         display: flex;
         flex-direction: column;
-        height: 360px;
         border-radius: 10px;
         gap: 30px;
         padding: 24px;
         position: relative;
         overflow: hidden;
+        max-height: 360px;
+        height: 100%;
     }
     .box1 {
         background-color: #54A6FF;
@@ -136,9 +140,11 @@
         width: 50%;
         max-height: 140px;
         object-fit: contain;
-        z-index: 1;
     }
     .rental-car__button:hover {
         background-color: #0A196F;
+    }
+    .koe {
+        bottom: -7px;
     }
 </style>

@@ -25,8 +25,9 @@
       flex-direction: column;
     }
     .skeleton-title {
-      width: 30%;
-      height: 30px;
+      width: 20%;
+      height: 20px;
+      border-radius: 20px;
     }
     .skeleton-type {
       width: 10%;

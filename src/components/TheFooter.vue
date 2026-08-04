@@ -97,13 +97,15 @@
 
 <style scoped>
     footer {
-        max-height: 580px;
+        display: flex;
+        flex-direction: column;
+        padding: 80px 60px;
+        height: 100%;
+        justify-content: space-around;
         gap: 36px;
-        background-color: white;
     }
     .footer {
         width: 100%;
-        max-height: 244px;
         display: flex;
         justify-content: space-between;
     }
@@ -129,7 +131,6 @@
         grid-template-columns: repeat(auto-fit, minmax(80px, 3fr));
         gap: 60px;
         width: 50%;
-        height: 244px;
     }
     .footer-links__item {
         display: flex;
@@ -145,11 +146,7 @@
     .footer__border {
         border: 1px solid #13131329;
     }
-    footer {
-        display: flex;
-        flex-direction: column;
-        padding: 80px 60px;
-    }
+
     .right-box {
         display: flex;
         justify-content: space-between;
