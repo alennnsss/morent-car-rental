@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    
+
 </template>
 
 <script setup>
@@ -54,11 +54,9 @@
     }
     .blocks-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 2fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 2fr));
         gap: 32px;
         padding: 24px;
-        max-height: 360px;
-        height: 100%;
     }
     .blocks-container-box {
         display: flex;
@@ -68,8 +66,7 @@
         padding: 24px;
         position: relative;
         overflow: hidden;
-        max-height: 360px;
-        height: 100%;
+        min-height: 360px;
     }
     .box1 {
         background-color: #54A6FF;
@@ -83,7 +80,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
-        max-width: 55%; 
+        max-width: 70%; 
         z-index: 2;
     }
     .blocks-container-box1__image-box {

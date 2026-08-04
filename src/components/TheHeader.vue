@@ -13,6 +13,9 @@
     <div class="navigation-box">
         <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/heart.png" alt="heart">
+            <p class="cart-badge" v-if="cartStore.totalItemsCount > 0">
+                {{ cartStore.totalItemsCount }}
+            </p>
         </router-link>
         <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/notification.png" alt="heart">
@@ -32,7 +35,9 @@
 
 <script setup>
     import { ref, onMounted, computed } from 'vue';
-
+    import { useCartStore } from '../stores/useCartStore';
+    
+    const cartStore = useCartStore()
     const currentTheme = ref(localStorage.getItem('theme') || 'white')
     const nameInputRef = ref(null);
 
@@ -119,6 +124,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+    }
+    .cart-badge {
+        position: absolute;
+        border-radius: 50%;
+        height: 1rem;
+        width: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: -0.47rem;
+        right: -0.5rem;
+        background-color: red;
+        color: white;
     }
     .navigation-box__svg {
         height: 17.8px;

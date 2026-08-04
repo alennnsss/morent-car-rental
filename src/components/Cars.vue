@@ -17,7 +17,7 @@
                 <button v-if="favoriteStore.favorites.includes(car.id)" @click="favoriteStore.toggleFavorite(car.id), toastStore.addToast()" class="heart-button">
                     <img class="heart-svg" src="../assets/icons/heart-red.png" alt="heart">
                 </button>
-                <button @click="favoriteStore.toggleFavorite(car.id)" v-else class="heart-button">
+                <button @click="favoriteStore.toggleFavorite(car.id)" :disabled="isButtonLoading" v-else class="heart-button">
                     <img class="heart-svg" src="../assets/icons/heart-white.png" alt="heart red">
                 </button>
             </div>
@@ -42,7 +42,8 @@
                     <p class="price">${{ car.pricePerDay }}.00/</p> 
                     <span class="car-card__span">day</span>
                 </div>    
-                <button class="rent-now__button">Rent Now</button>
+                <BaseLoader v-if="isButtonLoading" :size="20"/>
+                <button v-else @click="handleBuyClick(car)" :disabled="isButtonLoading" class="rent-now__button">Rent Now</button>
             </div>
     </div>
 
@@ -55,18 +56,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { db }  from '../api/firebase.js'
 import { collection, getDocs, limit, query } from 'firebase/firestore'
-import CarsSkeleton from './CarsSkeleton.vue';
 import { useFavouriteStore } from '../stores/useFavouriteStore.js';
 import { useToastStore } from '../stores/useToastStore.js';
+import { useCartStore } from '../stores/useCartStore.js';
+import CarsSkeleton from './CarsSkeleton.vue';
+import BaseLoader from './BaseLoader.vue'
 
 const toastStore = useToastStore()
 const favoriteStore = useFavouriteStore()
 const isLoading = ref(false)
 const cars = ref([])
 const limitPerPage = ref(4)
+const cartStore = useCartStore()
+const isButtonLoading = ref(false)
 
 const fetchCars = async () => {
     isLoading.value = true
@@ -79,10 +84,29 @@ const fetchCars = async () => {
         }))
     } catch(e) {
         console.error('Error', e.message)  
+        toastStore.addToast('Error in depolying cars', 'error')
     } finally {
         isLoading.value = false
     }
-    
+}
+const handleBuyClick = async() => {
+    isButtonLoading.value = true;
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    try {
+        cartStore.addToCart({
+            id: cars.id,
+            name: cars.name,
+            type: cars.type,
+            capacity: cars.capacity,
+            fuelCapacity: cars.fuelCapacity,
+            price: cars.pricePerDay,
+        })
+    } catch(error) {
+        console.log('error', error.message);
+        toastStore.addToast('Error to add to cart', 'error')
+    } finally {
+        isButtonLoading.value = true
+    }
 }
 const showMore = () => limitPerPage.value += 4;
 const showAll = () => limitPerPage.value += 12;
