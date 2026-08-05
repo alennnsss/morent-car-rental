@@ -14,11 +14,14 @@ defineProps({
 </script>
 
 <style scoped>
+    * {
+        box-sizing: border-box;
+    }
     .base-loader {
         border: 3px solid #fafafa;
         border-radius: 50%;
         animation: spin 1s ease-in-out infinite;
-        background-color: rgba(8, 8, 212, 0.653);
+        border-top-color: #2A254B;
         display: inline-block;
     }
     @keyframes spin {

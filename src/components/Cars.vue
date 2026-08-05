@@ -1,17 +1,94 @@
+<script setup>
+import { ref, watch, computed } from 'vue'
+import { db }  from '../api/firebase.js'
+import { collection, getDocs, limit, query } from 'firebase/firestore'
+import { useFavouriteStore } from '../stores/useFavouriteStore.js';
+import { useToastStore } from '../stores/useToastStore.js';
+import { useCartStore } from '../stores/useCartStore.js';
+import CarsSkeleton from './CarsSkeleton.vue';
+import BaseLoader from './BaseLoader.vue'
+import { useSearchStore } from '../stores/useSearchStore.js';
+
+const toastStore = useToastStore()
+const searchStore = useSearchStore()
+const favoriteStore = useFavouriteStore()
+const isLoading = ref(false)
+const cars = ref([])
+const limitPerPage = ref(4)
+const cartStore = useCartStore()
+const isButtonLoading = ref(null)
+
+const fetchCars = async () => {
+    isLoading.value = true
+    try {
+        const queryParams = query(collection(db, 'cars'), limit(limitPerPage.value))
+        const querySnapshot = await getDocs(queryParams)
+        cars.value = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }))
+    } catch(e) {
+        console.error('Error', e.message)  
+        toastStore.addToast('Error in depolying cars', 'error')
+    } finally {
+        isLoading.value = false
+    }
+};
+const filteredCars = computed(() => {
+    if(!searchStore.searchQuery.trim()) {
+        return cars.value
+    }
+    return cars.value.filter(car => car.name.toLowerCase().includes(searchStore.searchQuery.toLowerCase().trim()))
+})
+const reloadPage = () => {
+    window.location.reload()
+}
+const handleBuyClick = async(car) => {
+    isButtonLoading.value = car.id
+    await new Promise(resolve => setTimeout(resolve, 500))
+    try {
+        cartStore.addToCart({
+            id: car.id,
+            name: car.name,
+            type: car.type,
+            capacity: car.capacity,
+            fuelCapacity: car.fuelCapacity,
+            price: car.pricePerDay,
+        })
+    } catch(error) {
+        console.log('error', error.message);
+        toastStore.addToast('Error to add to cart', 'error')
+    } finally {
+        isButtonLoading.value = null
+    }
+}
+const showMore = () => limitPerPage.value += 4;
+const showAll = () => limitPerPage.value += 12;
+watch(limitPerPage, () => {
+    fetchCars()
+}, {immediate: true})
+
+</script>
+
 <template>
     <div class="cars-preview">
         <h2 class="cars-preview__title">
-            Popular Car
+            Popular Cars
         </h2>
         <button @click="showAll" class="cars-preview__link">
             View All
         </button>
     </div>
-    <div class="cars-grid">
+    <div class="no-cars" v-if="!isLoading && filteredCars.length === 0">
+        <h2>
+            Cars not found
+        </h2>
+    </div>
+    <div v-else class="cars-grid">
         <template v-if="isLoading">
             <CarsSkeleton v-for="value in 4" :key="value"/>
         </template>
-        <div v-else v-for="car in cars" :key="car.id" class="car-card">
+        <div v-else v-for="car in filteredCars" :key="car.id" class="car-card">
             <div class="heart-div">
                 <h2>{{ car.name }}</h2>
                 <button v-if="favoriteStore.favorites.includes(car.id)" @click="favoriteStore.toggleFavorite(car.id), toastStore.addToast()" class="heart-button">
@@ -45,77 +122,19 @@
                 <BaseLoader v-if="isButtonLoading" :size="20"/>
                 <button v-else @click="handleBuyClick(car)" :disabled="isButtonLoading" class="rent-now__button">Rent Now</button>
             </div>
+
+        </div>   
     </div>
-
-  </div>
-  <div class="show-div">
-    <button class="show-more" @click="showMore">Show More Car</button>
-    <h2 class="cars_number">12 Cars</h2>
-  </div>
-
+    <div class="back-link" v-if="!isLoading && filteredCars.length === 0">
+        <button @click="reloadPage">
+            Go Back
+        </button>
+    </div>
+    <div class="show-div" v-else>
+        <button class="show-more" @click="showMore">Show More Car</button>
+        <h2 class="cars_number">{{ filteredCars.length }} Cars</h2>
+    </div>        
 </template>
-
-<script setup>
-import { ref, watch } from 'vue'
-import { db }  from '../api/firebase.js'
-import { collection, getDocs, limit, query } from 'firebase/firestore'
-import { useFavouriteStore } from '../stores/useFavouriteStore.js';
-import { useToastStore } from '../stores/useToastStore.js';
-import { useCartStore } from '../stores/useCartStore.js';
-import CarsSkeleton from './CarsSkeleton.vue';
-import BaseLoader from './BaseLoader.vue'
-
-const toastStore = useToastStore()
-const favoriteStore = useFavouriteStore()
-const isLoading = ref(false)
-const cars = ref([])
-const limitPerPage = ref(4)
-const cartStore = useCartStore()
-const isButtonLoading = ref(false)
-
-const fetchCars = async () => {
-    isLoading.value = true
-    try {
-        const queryParams = query(collection(db, 'cars'), limit(limitPerPage.value))
-        const querySnapshot = await getDocs(queryParams)
-        cars.value = querySnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }))
-    } catch(e) {
-        console.error('Error', e.message)  
-        toastStore.addToast('Error in depolying cars', 'error')
-    } finally {
-        isLoading.value = false
-    }
-}
-const handleBuyClick = async() => {
-    isButtonLoading.value = true;
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    try {
-        cartStore.addToCart({
-            id: cars.id,
-            name: cars.name,
-            type: cars.type,
-            capacity: cars.capacity,
-            fuelCapacity: cars.fuelCapacity,
-            price: cars.pricePerDay,
-        })
-    } catch(error) {
-        console.log('error', error.message);
-        toastStore.addToast('Error to add to cart', 'error')
-    } finally {
-        isButtonLoading.value = true
-    }
-}
-const showMore = () => limitPerPage.value += 4;
-const showAll = () => limitPerPage.value += 12;
-watch(limitPerPage, () => {
-    fetchCars()
-}, {immediate: true})
-
-</script>
-
 
 <style scoped>
     .cars-preview {
@@ -134,11 +153,17 @@ watch(limitPerPage, () => {
     .cars-preview__link {
         cursor: pointer;
         border: none;
-        background-color: var(--white-color);
+        background-color: var(--main-color);
         color: var(--button-dark-color);
     }
     .cars-preview__link:hover {
         color: var(--button-color);
+    }
+    .no-cars {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
     }
     .cars-grid {
         width: 100%;
@@ -229,11 +254,22 @@ watch(limitPerPage, () => {
         width: 21.5px;
         height: 20.75px;
     }
+    .back-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .back-link button {
+        border: none;
+        background-color: var(--main-color);
+    }
     .show-div {
         width: 100%;
         display: flex;
         background-color: var(--main-color);
         padding: 64px 64px 64px;
+        justify-content: space-between;
     }
     .show-more {
         background-color:var(--button-dark-color);
@@ -255,5 +291,8 @@ watch(limitPerPage, () => {
         line-height: 20px;
         color: var(--span-color);
         padding: 10px 0 0 10px;
+    }
+    a {
+        text-decoration: none;
     }
 </style>

@@ -6,7 +6,7 @@
         </h1>
         <div class="header-search__box">
             <img src="../assets/icons/search-button.png" alt="search-button" class="header-search__img">
-            <input ref="nameInputRef" class="header-search__input" type="text" placeholder="Search something here">
+            <input id="search" v-model="searchStore.searchQuery" ref="nameInputRef" class="header-search__input" type="text" placeholder="Search something here">
             <img src="../assets/icons/option-button.png" alt="option-button" class="header-option__img">
         </div>
     </div>
@@ -36,7 +36,9 @@
 <script setup>
     import { ref, onMounted, computed } from 'vue';
     import { useCartStore } from '../stores/useCartStore';
-    
+    import { useSearchStore } from '../stores/useSearchStore';
+
+    const searchStore = useSearchStore()
     const cartStore = useCartStore()
     const currentTheme = ref(localStorage.getItem('theme') || 'white')
     const nameInputRef = ref(null);
@@ -45,6 +47,7 @@
         if(currentTheme.value === 'dark') return 'dark'
         return 'white'
     })
+
     const changeTheme = () => {
         currentTheme.value = currentTheme.value === 'dark' ? 'white' : 'dark';
         localStorage.setItem('theme', currentTheme.value);
@@ -128,6 +131,7 @@
     }
     .cart-badge {
         position: absolute;
+        font-size: 10px;
         border-radius: 50%;
         height: 1rem;
         width: 20px;
@@ -136,8 +140,8 @@
         align-items: center;
         top: -0.47rem;
         right: -0.5rem;
-        background-color: red;
-        color: white;
+        background-color: rgb(222, 26, 26);
+        color: rgb(255, 255, 255);
     }
     .navigation-box__svg {
         height: 17.8px;

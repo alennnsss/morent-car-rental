@@ -20,12 +20,14 @@
                         <option value="newyork">New York</option>
                     </select>
                 </div>  
+                <div class="border"></div>
                 <div class="selection-box">
                     <label for="pickup-date">
                         <h2>Date</h2>
                     </label>
                     <input type="date" name="pickup-date" id="pickup-date">
                 </div>
+                <div class="border"></div>
                 <div class="selection-box">
                     <label for="pickup-time">
                         <h2>Time</h2>
@@ -34,7 +36,9 @@
                 </div> 
             </div>     
         </div>
-        
+        <button class="inverse-button">
+            <img class="inverse-image" src="../assets/images/inverse.png" alt="inverse">
+        </button>
         <div class="option-box">
             <div class="checkbox">
                 <input type="radio" id="drop">
@@ -55,12 +59,14 @@
                         <option value="newyork">New York</option>
                     </select>
                 </div>  
+                <div class="border"></div>
                 <div class="selection-box">
                     <label for="dropoff-date">
                         <h2>Date</h2>
                     </label>
                     <input type="date" name="dropoff-date" id="dropoff-date">
                 </div>
+                <div class="border"></div>
                 <div class="selection-box">
                     <label for="dropoff-time">
                         <h2>Time</h2>
@@ -78,18 +84,29 @@
 
 <style scoped>
     .container {
-        display: grid;
+        display: flex;
         width: 100%;
-        padding: 32px 26px;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        padding: 32px 26px;;
         gap: 44px;
         position: relative;
     }
     .option-box {
         background-color: var(--white-color);
         border-radius: 10px;
-        width: 100%;
+        width: 45%;
         padding: 26px 48px 24px 48px;
+    }
+    .inverse-button {
+        border-radius: 10px;
+        background-color: var(--button-dark-color);
+        width: 60px;
+        height: 60px;
+        border: none;
+        margin-top: 36px;
+    }
+    .inverse-image {
+        width: 24px;
+        height: 24px;
     }
     .checkbox {
         display: flex;
@@ -107,6 +124,9 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+    }
+    .border {
+        border-right: 1px solid #C3D4E966;
     }
 
     h2 {
