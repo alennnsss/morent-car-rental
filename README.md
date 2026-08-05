@@ -1,5 +1,14 @@
-# Vue 3 + Vite
+MORENT — Car Rental Platform
+MORENT is a modern car rental web application for searching, filtering, and booking vehicles.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Key Features
+Pick-Up & Drop-Off Selection: Choose locations (Almaty, London, Moscow, New York), dates, and times with quick swap functionality.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+Car Catalog: Browse popular cars (SUV, Sport) with specs like fuel capacity, transmission, seating, and daily price.
+
+Wishlist & Search: Save favorites and search vehicles instantly.
+
+Tech Stack
+Frontend: Vue / Vite / Vue Router
+
+Styling: CSS
