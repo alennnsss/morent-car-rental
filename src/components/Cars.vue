@@ -5,9 +5,9 @@ import { collection, getDocs, limit, query } from 'firebase/firestore'
 import { useFavouriteStore } from '../stores/useFavouriteStore.js';
 import { useToastStore } from '../stores/useToastStore.js';
 import { useCartStore } from '../stores/useCartStore.js';
+import { useSearchStore } from '../stores/useSearchStore.js';
 import CarsSkeleton from './CarsSkeleton.vue';
 import BaseLoader from './BaseLoader.vue'
-import { useSearchStore } from '../stores/useSearchStore.js';
 
 const toastStore = useToastStore()
 const searchStore = useSearchStore()
@@ -120,7 +120,7 @@ watch(limitPerPage, () => {
                     <span class="car-card__span">day</span>
                 </div>    
                 <BaseLoader v-if="isButtonLoading" :size="20"/>
-                <button v-else @click="handleBuyClick(car)" :disabled="isButtonLoading" class="rent-now__button">Rent Now</button>
+                <button v-else @click="handleBuyClick(car)" :disabled="isButtonLoading === car.id" class="rent-now__button">Rent Now</button>
             </div>
 
         </div>   

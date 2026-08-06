@@ -5,7 +5,6 @@
         <Cars />
         <router-view/>
     </div>    
-    <TheFooter />
   
   
 </template>

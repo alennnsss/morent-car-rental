@@ -3,21 +3,8 @@ import TheToast from './components/TheToast.vue';
 import CookiesBanner from './components/CookiesBanner.vue';
 import ScrollTopButton from './components/ScrollTopButton.vue';
 import TheHeader from './components/TheHeader.vue';
+import TheFooter from './components/TheFooter.vue';
 import { onMounted } from 'vue';
-
-const checkTheme = () => {
-  const savedTheme = localStorage.getItem('theme') || 'white'
-  if(savedTheme === 'dark') {
-    document.body.classList.add('dark-theme')
-    document.body.classList.remove('white-theme')
-  } else {
-    document.body.classList.add('white-theme');
-    document.body.classList.remove('dark-theme')
-  }
-}
-onMounted(() => {
-  checkTheme()
-})
 </script>
 
 <template>
@@ -26,6 +13,7 @@ onMounted(() => {
   <cookies-banner />
   <scroll-top-button />
   <the-toast />
+  <the-footer />
 </template>
 <style>
   .container {

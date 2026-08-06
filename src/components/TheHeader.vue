@@ -26,9 +26,6 @@
         <router-link class="navigation-box__link  navigation-box__link-profile" to="/">
             <img class="navigation-box__svg" src="../assets/icons/people.png" alt="heart">
         </router-link>
-        <button @click="changeTheme" class="change-theme">
-            Change theme
-        </button>
     </div>    
   </header>
 </template>
