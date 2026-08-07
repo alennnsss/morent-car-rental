@@ -1,68 +1,35 @@
 <template>
   <div class="catalog">
     <div class="catalog-sidebar">
-        <div class="sidebar-type" v-for="type in typeCars" :key="type.id">
-            <span>T Y P E</span>
-            <div class="checkbox">
-                <input type="checkbox" v-model="searchStore.selectedTypes" name="sport" id="sport">
-                <h2>Sport</h2>
-                <span class="number">(10)</span>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox"  v-model="searchStore.selectedTypes"  id="suv">
-                <h2>SUV</h2>
-                <span class="number">(12)</span>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox"  v-model="searchStore.selectedTypes"  id="mpv">
-                <h2>MPV</h2>
-                <span class="number">(16)</span>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox"  v-model="searchStore.selectedTypes"  id="sedan">
-                <h2>Sedan</h2>
-                <span class="number">(20)</span>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox"  v-model="searchStore.selectedTypes"  id="coupe">
-                <h2>Coupe</h2>
-                <span class="number">(14)</span>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox"  v-model="searchStore.selectedTypes"  id="hatchback">
-                <h2>Hatchback</h2>
-                <span class="number">(14)</span>
-            </div>
-
-        </div>
         <div class="sidebar-type">
+            <span>T Y P E</span>
+            <div class="checkbox" v-for="type in types" :key="type.id">
+                <input
+                    :id="type.id"
+                    type="checkbox"
+                    :value="type.title"
+                    v-model="filterStore.selectedType"
+                >
+                <label :for="type.id">
+                    {{ type.title }}
+                </label>
+                <span class="number">{{ type.count }}</span>
+            </div>
+        </div>
+        <div class="sidebar-type" >
             <span>C A P A C I T Y</span>
-            <div class="checkbox">
-                <input type="checkbox" name="2" id="2">
-                <h2>2 People</h2>
-                <span class="number">(10)</span>
+            <div v-for="capacity in capacities" :key="capacity.id" class="checkbox">
+                <input :id="capacity.id" :value="capacity.title" v-model="filterStore.selectedCapacity" type="checkbox">
+                <label :for="capacity.id">
+                    {{ capacity.title }}
+                </label>
+                <span class="number">{{ capacity.count }}</span>
             </div>
-            <div class="checkbox">
-                <input type="checkbox" id="4">
-                <h2>4 People</h2>
-                <span class="number">(14)</span>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox" id="6">
-                <h2>6 People</h2>
-                <span class="number">(12)</span>
-            </div>
-            <div class="checkbox">
-                <input type="checkbox" id="8">
-                <h2>8 or More</h2>
-                <span class="number">(16)</span>
-            </div>
-            
         </div>
         <div class="sidebar-type">
             <span>P R I C E</span>
-            <input v-model="price" type="range" max="100" min="72" step="1">
-            <p>Current value: ${{ price }}.00</p>
+            <input v-model="filterStore.selectedPrice" type="range" max="100" min="72" step="1">
+            <p>Current value: ${{ filterStore.selectedPrice }}.00</p>
             <h2>Max. $100.00</h2>
         </div>
     </div>
@@ -77,12 +44,25 @@
 import TheOptions from '../components/TheOptions.vue';
 import Cars from '../components/Cars.vue';
 import { ref } from 'vue';
-
+import { useFilterStore } from '../stores/useFilterStore.js';
 import { useSearchStore } from '../stores/useSearchStore.js';
 
-const searchStore = useSearchStore()
-const price = ref(72);
-const typeCars = ['Sport', 'SUV', 'MPV', 'Sedan', 'Coupe', 'Hatchback']
+const filterStore = useFilterStore()
+const types = ref([
+    { id:1, title: 'Sport', count: 10 },
+    { id:2, title: 'SUV', count: 12 },
+    { id:3, title: 'MPV', count: 16 },
+    { id:4, title: 'Sedan', count: 20 },
+    { id:5, title: 'Coupe', count: 14 },
+    { id:6, title: 'Hatchback', count: 14 },
+])
+const capacities = ref([
+  { id: 2, title: '2 People', count: 10 },
+  { id: 4, title: '4 People', count: 14 },
+  { id: 6, title: '6 People', count: 12 },
+  { id: 8, title: '8 or More', count: 16 }
+])
+
 </script>
 
 <style scoped>

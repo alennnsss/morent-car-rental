@@ -8,8 +8,10 @@ import { useCartStore } from '../stores/useCartStore.js';
 import { useSearchStore } from '../stores/useSearchStore.js';
 import CarsSkeleton from './CarsSkeleton.vue';
 import BaseLoader from './BaseLoader.vue'
+import { useFilterStore } from '../stores/useFilterStore.js';
 
 const toastStore = useToastStore()
+const filterStore = useFilterStore()
 const searchStore = useSearchStore()
 const favoriteStore = useFavouriteStore()
 const isLoading = ref(false)
@@ -35,10 +37,19 @@ const fetchCars = async () => {
     }
 };
 const filteredCars = computed(() => {
-    if(!searchStore.searchQuery.trim()) {
-        return cars.value
+    let result = cars.value
+    if(searchStore.searchQuery.trim()) {
+        result = result.filter(car => car.name.toLowerCase().includes(searchStore.searchQuery.toLowerCase().trim()))
     }
-    return cars.value.filter(car => car.name.toLowerCase().includes(searchStore.searchQuery.toLowerCase().trim()))
+    if(filterStore.selectedCapacity.length > 0) {
+        result = result.filter(car => filterStore.selectedCapacity.includes(car.capacity))
+    }
+    if(filterStore.selectedType.length > 0) {
+        result = result.filter(car => filterStore.selectedType.includes(car.type))
+    }
+    result = result.filter(car => car.pricePerDay <= filterStore.selectedPrice)
+
+    return result
 })
 const reloadPage = () => {
     window.location.reload()
