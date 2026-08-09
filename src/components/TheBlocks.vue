@@ -3,17 +3,15 @@
         <div class="blocks-container-box box1">
             <div class="blocks-container__info">
                 <h1>
-                    The Best Platform 
-                    for Car Rental
+                    {{ $t('best_platform') }}
                 </h1>
                 <p>
-                    Ease of doing a car rental safely and 
-                    reliably. Of course at a low price.
+                    {{ $t('ease_way') }}
                 </p>
             </div>    
             <div class="blocks-container__image-box">
                 <button class="button1">
-                    Rental Car
+                    {{ $t('rental_car') }}
                 </button>
                 <img class="car-image koe" src="../assets/images/korvette.png" alt="korvette">
             </div>    
@@ -21,15 +19,15 @@
         <div class="blocks-container-box box2">
             <div class="blocks-container__info">
                 <h1>
-                    Easy way to rent a car at a low price
+                    {{ $t('low_price')}}
                 </h1>
                 <p>
-                    Providing cheap car rental services and safe and comfortable facilities.
+                    {{ $t('comfort_facilities') }}
                 </p>
             </div>    
             <div class="blocks-container__image-box">
                 <button class="rental-car__button">
-                    Rental Car
+                    {{ $t('rental_car') }}
                 </button>
                 <img class="car-image" src="../assets/images/nissan.png" alt="nissan">
             </div>
@@ -97,7 +95,7 @@
     .button1 {
         max-width: 120px;
         width: 100%;
-        height: 44px;
+        max-height: 82px;
         border-radius: 4px;
         background-color: #3563E9;
         color: white;
@@ -119,7 +117,7 @@
         background-color: #54A6FF;
         max-width: 120px;
         width: 100%;
-        height: 44px;
+        max-height: 82px;
         border-radius: 4px;
         color: white;
         border: none;

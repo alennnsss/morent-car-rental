@@ -4,33 +4,33 @@
             <div class="checkbox">
                 <input type="checkbox" v-model="radio" id="pick">
                 <label for="pick">
-                    <h2>Pick - Up</h2>
+                    <h2>{{ $t('pick_up')}}</h2>
                 </label>
             </div>
             <div class="select-container">
                 <div class="selection-box">
                     <label for="pickup-locations">
-                        <h2>Locations</h2>
+                        <h2>{{ $t('locations')}}</h2>
                     </label>
                     <select v-model="formData.cityPick" :disabled="!radio" name="pickup-locations" id="pickup-locations">
-                        <option value="default">Select your city</option>
-                        <option value="almaty">Almaty</option>
-                        <option value="london">London</option>
-                        <option value="moskow">Moskow</option>
-                        <option value="newyork">New York</option>
+                        <option value="default">{{ $t('select_city')}}</option>
+                        <option value="almaty">{{ $t('almaty')}}</option>
+                        <option value="london">{{ $t('london')}}</option>
+                        <option value="moskow">{{ $t('moskow')}}</option>
+                        <option value="newyork">{{ $t('newyork') }}</option>
                     </select>
                 </div>  
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="pickup-date">
-                        <h2>Date</h2>
+                        <h2>{{ $t('date')}}</h2>
                     </label>
                     <input v-model="formData.datePick" :disabled="!radio" type="date" name="pickup-date" id="pickup-date">
                 </div>
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="pickup-time">
-                        <h2>Time</h2>
+                        <h2>{{ $t('time')}}</h2>
                     </label>
                     <input v-model="formData.timePick" :disabled="!radio" type="time" name="pickup-time" id="pickup-time">
                 </div> 
@@ -43,42 +43,39 @@
             <div class="checkbox">
                 <input type="checkbox" v-model="radio" id="pick">
                 <label for="drop">
-                    <h2>Drop - Off</h2>
+                    <h2>{{ $t('drop_off') }}</h2>
                 </label>
             </div>    
             <div class="select-container">
                 <div class="selection-box">
                     <label for="dropoff-locations">
-                        <h2>Locations</h2>
+                        <h2>{{ $t('locations')}}</h2>
                     </label>
                     <select v-model="formData.cityDrop" :disabled="!radio" name="dropoff-locations" id="dropoff-locations">
-                        <option value="default" class="text-gray">Select your city</option>
-                        <option value="almaty">Almaty</option>
-                        <option value="london">London</option>
-                        <option value="moskow">Moskow</option>
-                        <option value="newyork">New York</option>
+                        <option value="default">{{ $t('select_city')}}</option>
+                        <option value="almaty">{{ $t('almaty')}}</option>
+                        <option value="london">{{ $t('london')}}</option>
+                        <option value="moskow">{{ $t('moskow')}}</option>
+                        <option value="newyork">{{ $t('newyork') }}</option>
                     </select>
                 </div>  
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="dropoff-date">
-                        <h2>Date</h2>
+                        <h2>{{ $t('date')}}</h2>
                     </label>
                     <input v-model="formData.dateDrop" :disabled="!radio" type="date" name="dropoff-date" id="dropoff-date">
                 </div>
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="dropoff-time">
-                        <h2>Time</h2>
+                        <h2>{{ $t('time')}}</h2>
                     </label>
                     <input v-model="formData.timeDrop" :disabled="!radio" type="time" name="dropoff-time" id="dropoff-time">
                 </div> 
             </div>     
         </div>    
     </div>   
-    <div v-for="item in data" :key="item.id">
-        <h2>{{ item.cityPick }}</h2>
-    </div> 
 </template>
 
 <script setup>

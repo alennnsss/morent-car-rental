@@ -6,10 +6,10 @@
                     MORENT
                 </h1>
                 <div class="footer-logo__desc">
-                    <span>Our vision is to provide convenience</span>
+                    <span>{{ $t('our_vision') }}</span>
                     <div>
                         <span>
-                            and help increase your sales business.
+                            {{ $t('help') }}
                         </span>
                     </div>
                 </div>    
@@ -17,45 +17,45 @@
             <div class="footer-links">
                 <div class="footer-links__item">
                     <h1>
-                        About
+                        {{ $t('about') }}
                     </h1>
                     <div class="links-box">
                         <routerLink to="">
-                            How it works
+                            {{ $t('how_works') }}
                         </routerLink>
                         <routerLink to="">
-                            Featured
+                            {{ $t('featured') }}
                         </routerLink>
                         <routerLink to="">
-                            Partnership
+                            {{ $t('partnership') }}
                         </routerLink>
                         <routerLink to="">
-                            Bussiness Relation
+                            {{ $t('bussiness_rel')}}
                         </routerLink>
                     </div>    
                 </div>
                 <div class="footer-links__item">
                     <h1>
-                        Community
+                        {{ $t('community') }}
                     </h1>
                     <div class="links-box">
                         <routerLink to="">
-                            Events
+                            {{ $t('events') }}
                         </routerLink>
                         <routerLink to="">
-                            Blog
+                            {{ $t('blog') }}
                         </routerLink>
                         <routerLink to="">
-                            Podcast
+                            {{ $t('podcast')}}
                         </routerLink>
                         <routerLink to="">
-                            Invite a friend
+                            {{ $t('invite')}}
                         </routerLink>
                     </div>
                 </div>
                 <div class="footer-links__item">
                     <h1>
-                        Socials
+                        {{ $t('socials') }}
                     </h1>
                     <div class="links-box">
                         <a target="blank" href="https://discord.com/">
@@ -77,14 +77,14 @@
         <div class="footer__border"></div>
         <div class="right-box">
             <div>
-                <h1>&copy;2022 MORENT.All right reserved</h1>
+                <h1>&copy;2022 MORENT.{{ $t('rights') }}</h1>
             </div>
             <div class="policy-box">
                 <router-link to="">
-                    Privacy & Policy
+                    {{ $t('privacy')}}
                 </router-link>
                 <router-link to="">
-                    Terms & Condition
+                    {{ $t('terms') }}
                 </router-link>
             </div>
         </div>

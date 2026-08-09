@@ -1,20 +1,22 @@
 <template>
   <header class="header" :class="valueTheme">
     <div class="header-logo-box">
-        <h1 class="header-logo__title">
-            MORENT
-        </h1>
+        <router-link to="/">
+            <h1 class="header-logo__title">
+                MORENT
+            </h1>
+        </router-link>    
         <div class="header-search__box">
             <img src="../assets/icons/search-button.png" alt="search-button" class="header-search__img">
-            <input id="search" v-model="searchStore.searchQuery" ref="nameInputRef" class="header-search__input" type="text" placeholder="Search something here">
+            <input id="search" v-model="searchStore.searchQuery" ref="nameInputRef" class="header-search__input" type="text" :placeholder=" $t('search_input') ">
             <img src="../assets/icons/option-button.png" alt="option-button" class="header-option__img">
         </div>
     </div>
     <div class="navigation-box">
         <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/heart.png" alt="heart">
-            <p class="cart-badge" v-if="cartStore.totalItemsCount > 0">
-                {{ cartStore.totalItemsCount }}
+            <p class="cart-badge" v-if="favouriteStore.totalItemsCount > 0">
+                {{ favouriteStore.totalItemsCount }}
             </p>
         </router-link>
         <router-link class="navigation-box__link" to="/">
@@ -26,6 +28,21 @@
         <router-link class="navigation-box__link  navigation-box__link-profile" to="/">
             <img class="navigation-box__svg" src="../assets/icons/people.png" alt="heart">
         </router-link>
+        <router-link to="/catalog">
+            View All Cars
+        </router-link>
+        <button class="language" @click="changeLanguage">
+            <img src="../assets/icons/translate.png" class="translate" alt="translate">
+            <h1 v-if="locale === 'en'">
+                EN
+            </h1>
+            <h1 v-else-if="locale === 'ru'">
+                RU
+            </h1>
+            <h1 v-else>
+                KZ
+            </h1>
+        </button>
     </div>    
   </header>
 </template>
@@ -34,9 +51,13 @@
     import { ref, onMounted, computed } from 'vue';
     import { useCartStore } from '../stores/useCartStore';
     import { useSearchStore } from '../stores/useSearchStore';
+    import { useI18n } from 'vue-i18n';
+    import { useFavouriteStore } from '../stores/useFavouriteStore';
 
+    const { locale } = useI18n({useScope: 'global'});
     const searchStore = useSearchStore()
-    const cartStore = useCartStore()
+    const cartStore = useCartStore();
+    const favouriteStore = useFavouriteStore()
     const currentTheme = ref(localStorage.getItem('theme') || 'white')
     const nameInputRef = ref(null);
 
@@ -55,6 +76,17 @@
             document.body.classList.add('white-theme')
             document.body.classList.remove('dark-theme')
         }
+    }
+    const changeLanguage = () => {
+        if(locale.value === 'en') {
+            locale.value = 'ru'
+        } 
+        else if (locale.value === 'ru') {
+            locale.value = 'kz'
+        } else {
+            locale.value = 'en'
+        }
+        localStorage.setItem('language', locale.value)
     }
     onMounted(() => {
         if(nameInputRef.value) {
@@ -148,6 +180,32 @@
         border: none;
         background-color: white;
         cursor: pointer;
+    }
+    .language {
+        border: none;
+        background-color: white;
+        cursor: pointer;
+    }
+    .translate {
+        width: 1rem;
+        height: 1rem;
+    }
+    a {
+        text-decoration: none;
+    }
+    a:hover {
+        border-bottom: 1px solid #c8c8c8;
+        animation: border 0.5s ease-in-out;
+    }
+    @keyframes border {
+        0% {
+            opacity: 0;
+            transform: translateX(5px);
+        }
+        100% {
+            opacity: 100%;
+            transform: translateX(0px);
+        }
     }
     @media screen and (max-width: 768px){
         .navigation-box__link {

@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "axios": "^1.18.1",
+    "chart.js": "^4.5.1",
     "firebase": "^12.16.0",
     "pinia": "^4.0.2",
     "router": "^2.2.0",
     "vue": "^3.5.39",
+    "vue-chartjs": "^5.3.4",
+    "vue-i18n": "^11.4.8",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {

@@ -1,14 +1,20 @@
 import { defineStore } from "pinia";
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useToastStore } from "./useToastStore";
+
 export const useFavouriteStore = defineStore('favourites', () => {
+
     const toastStore = useToastStore();
     const savedFavorites = localStorage.getItem('morent_favorite');
     const isFavorite = ref(false);
     const favorites = ref(savedFavorites ? JSON.parse(savedFavorites) : []);
+
     watch(favorites, (newValue) => {
         localStorage.setItem('morent_favorite', JSON.stringify(newValue))
     }, {deep: true})
+    const totalItemsCount = computed(() => {
+        return favorites.value.length
+    })
     const toggleFavorite = (id) => {
         const index = favorites.value.indexOf(id)
         if(index === -1) {
@@ -24,6 +30,7 @@ export const useFavouriteStore = defineStore('favourites', () => {
         savedFavorites,
         isFavorite,
         toggleFavorite,
-        favorites
+        favorites,
+        totalItemsCount
     }
 })

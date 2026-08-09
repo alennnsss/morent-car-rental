@@ -84,15 +84,15 @@ watch(limitPerPage, () => {
 <template>
     <div class="cars-preview">
         <h2 class="cars-preview__title">
-            Popular Cars
+            {{ $t('popular_cars')}}
         </h2>
         <button @click="showAll" class="cars-preview__link">
-            View All
+            {{ $t('view_all') }}
         </button>
     </div>
     <div class="no-cars" v-if="!isLoading && filteredCars.length === 0">
         <h2>
-            Cars not found
+            {{ $t('cars_not') }}
         </h2>
     </div>
     <div v-else class="cars-grid">
@@ -118,7 +118,7 @@ watch(limitPerPage, () => {
                     </div>
                     <div class="icons-container__item">
                         <img class="icon" src="../assets/icons/manual.png" alt="manual">
-                        <span class="icon car-card__span">Manual</span>
+                        <span class="icon car-card__span">{{ $t('manual') }}</span>
                     </div>
                     <div class="icons-container__item">
                         <img class="icon" src="../assets/icons/people.png" alt="people">
@@ -128,22 +128,24 @@ watch(limitPerPage, () => {
             <div class="car-card-rental-info">
                 <div class="car-card-rental-info__box">
                     <p class="price">${{ car.pricePerDay }}.00/</p> 
-                    <span class="car-card__span">day</span>
+                    <span class="car-card__span">{{ $t('day') }}</span>
                 </div>    
                 <BaseLoader v-if="isButtonLoading" :size="20"/>
-                <button v-else @click="handleBuyClick(car)" :disabled="isButtonLoading === car.id" class="rent-now__button">Rent Now</button>
+                <router-link v-else :to='`/cars/${car.id}`'>
+                    <button @click="handleBuyClick(car)" :disabled="isButtonLoading === car.id" class="rent-now__button">{{ $t('rent_now') }}</button>
+                </router-link>    
             </div>
 
         </div>   
     </div>
     <div class="back-link" v-if="!isLoading && filteredCars.length === 0">
         <button @click="reloadPage">
-            Go Back
+            {{ $t('go_back') }}
         </button>
     </div>
     <div class="show-div" v-else>
-        <button class="show-more" @click="showMore">Show More Car</button>
-        <h2 class="cars_number">{{ filteredCars.length }} Cars</h2>
+        <button class="show-more" @click="showMore">{{ $t('show_more') }}</button>
+        <h2 class="cars_number">{{ filteredCars.length }} {{ $t('cars_count') }}</h2>
     </div>        
 </template>
 
@@ -237,10 +239,11 @@ watch(limitPerPage, () => {
         font-size: 20px;
     }
     .rent-now__button {
-        width: 116px;
+        max-width: 186px;
         background-color: var(--button-dark-color);
         color: white;
         padding: 10px 20px;
+        height: 56px;
         border-radius: 4px;
         border: none;
         cursor: pointer;
@@ -290,6 +293,7 @@ watch(limitPerPage, () => {
         color: var(--white-color);
         border: none;
         padding: 10px 20px;
+        height: 56px;
         cursor: pointer;
         margin: 0 auto;
     }
