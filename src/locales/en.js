@@ -39,5 +39,16 @@ export default {
     socials: 'Socials',
     rights: 'All right reserved',
     privacy: 'Privacy & Policy',
-    terms: 'Terms & Condition'
+    terms: 'Terms & Condition',
+    best_design: 'Sports car with the best design and acceleration',
+    safety_comfort: 'Safety and comfort while driving a futuristic and elegant sports car',
+    type: 'T Y P E',
+    capacity: 'C A P A C I T Y',
+    people_count2: '2 People',
+    people_count6: '6 People',
+    price: 'P R I C E',
+    curr_val: 'Current value',
+    max: 'MAX.',
+    car_desc: 'A car designed for comfortable and enjoyable journeys, combining reliability, modern technology, and excellent performance for a confident drive in any conditions.',
+
 }   

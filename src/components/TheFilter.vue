@@ -1,7 +1,7 @@
 <template>
     <div class="catalog-sidebar">
         <div class="sidebar-type">
-            <span>T Y P E</span>
+            <span>{{ $t('type') }}</span>
             <div class="checkbox" v-for="type in types" :key="type.id">
                 <input
                     :id="type.id"
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="sidebar-type" >
-            <span>C A P A C I T Y</span>
+            <span>{{$t('capacity')}}</span>
             <div v-for="capacity in capacities" :key="capacity.id" class="checkbox">
                 <input :id="capacity.id" :value="capacity.title" v-model="filterStore.selectedCapacity" type="checkbox">
                 <label :for="capacity.id">
@@ -26,10 +26,10 @@
             </div>
         </div>
         <div class="sidebar-type">
-            <span>P R I C E</span>
+            <span>{{ $t('price') }}</span>
             <input v-model="filterStore.selectedPrice" type="range" max="100" min="72" step="1">
-            <p>Current value: ${{ filterStore.selectedPrice }}.00</p>
-            <h2>Max. $100.00</h2>
+            <p>{{ $t('curr_val') }}: ${{ filterStore.selectedPrice }}.00</p>
+            <h2>{{ $t('max') }} $100.00</h2>
         </div>
     </div>
 </template>
