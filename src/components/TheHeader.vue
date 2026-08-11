@@ -29,7 +29,7 @@
             <img class="navigation-box__svg" src="../assets/icons/people.png" alt="heart">
         </router-link>
         <router-link to="/catalog">
-            View All Cars
+            {{ $t('view_all_cars')}}
         </router-link>
         <button class="language" @click="changeLanguage">
             <img src="../assets/icons/translate.png" class="translate" alt="translate">

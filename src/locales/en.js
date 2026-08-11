@@ -50,5 +50,6 @@ export default {
     curr_val: 'Current value',
     max: 'MAX.',
     car_desc: 'A car designed for comfortable and enjoyable journeys, combining reliability, modern technology, and excellent performance for a confident drive in any conditions.',
-
+    view_all_cars: 'View All Cars',
+    
 }   
