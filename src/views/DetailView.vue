@@ -90,9 +90,11 @@
                             <h1>${{ product.pricePerDay }}.00/</h1>
                             <p class="day">{{ $t('day') }}</p>
                         </div>    
-                        <button class="rent">
-                            {{ $t('rent_now') }}
-                        </button>
+                        <router-link to="/checkout">
+                            <button class="rent">
+                                {{ $t('rent_now') }}
+                            </button>
+                        </router-link>    
                     </div>        
                 </div>
             </div>
