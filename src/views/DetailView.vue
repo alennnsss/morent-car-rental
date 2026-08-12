@@ -96,6 +96,12 @@
                     </div>        
                 </div>
             </div>
+            <div>
+                <TheReviews></TheReviews>
+            </div>
+            <div>
+                <Cars></Cars>
+            </div>
         </main>
     </div>
 </template>
@@ -111,6 +117,9 @@
     padding: 32px;
     background-color: var(--main-color);
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 .car-box {
     display: grid;
@@ -246,13 +255,14 @@ button {
 import { useRoute } from 'vue-router';
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
-import { getDocs, doc, where, query, collection, limit } from 'firebase/firestore';
+import { getDocs, where, query, collection } from 'firebase/firestore';
 import { db } from '../api/firebase';
 import CarsSkeleton from '../components/CarsSkeleton.vue';
 import { useFavouriteStore } from '../stores/useFavouriteStore.js';
 import StarRating from '../components/StarRating.vue';
 import { useToastStore } from '../stores/useToastStore.js';
-
+import TheReviews from '../components/TheReviews.vue';
+import Cars from '../components/Cars.vue';
 const toastStore = useToastStore()
 const favoriteStore = useFavouriteStore()
 const route = useRoute();
@@ -260,28 +270,9 @@ const router = useRouter();
 const isLoading = ref(false);
 const isError = ref(false);
 const product = ref(null)
-const limitPerReview = ref(2);
-const reviews = ref([])
 
-const fetchReviews = async() => {
-    isLoading.value = true
-    try {
-        isLoading.value = true;
-        const queryParams = query(collection(db, 'reviews'),
-        limit(limitPerReview.value))
-        const querySnapshot = await getDocs(queryParams)
-        reviews.value = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-        }))
-    } catch(error) {
-        console.error('Error', error.message)
-        toastStore.addToast('Error in reviews', 'error')
-        isError.value = true
-    } finally {
-        isLoading.value = false
-    }
-}
+
+
 const loadCar = async () => {
     isError.value = false
     isLoading.value = true
@@ -314,7 +305,6 @@ const loadCar = async () => {
 }
 onMounted(() => {
   loadCar()
-  fetchReviews()
 })
 </script>
 
