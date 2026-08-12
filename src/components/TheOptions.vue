@@ -36,7 +36,7 @@
                 </div> 
             </div>     
         </div>
-        <button :disabled="!radio" @click="saveFormData" class="inverse-button">
+        <button :disabled="!radio" @click="swapCities" class="inverse-button">
             <img class="inverse-image" src="../assets/images/inverse.png" alt="inverse">
         </button>
         <div class="option-box">
@@ -79,22 +79,21 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, reactive } from 'vue';
 
 const radio = ref(false);
-const formData = {
+const formData = reactive({
     cityPick: '',
     cityDrop: '',
     datePick: '',
     dateDrop: '',
     timePick: '',
     timeDrop: '',
-}
-const saveFormData = () => {
-    const savedForm = localStorage.setItem('rent_info', JSON.stringify(formData))
+})
 
+const swapCities = () => {
+    [formData.cityPick,formData.cityDrop] = [formData.cityDrop, formData.cityPick]
 }
-
 </script>
 
 <style scoped>
@@ -155,5 +154,8 @@ const saveFormData = () => {
     }
     .text-gray {
         color: var(--span-color);
+    }
+    input {
+        max-width: 80px;
     }
 </style>

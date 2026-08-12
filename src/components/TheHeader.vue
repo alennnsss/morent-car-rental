@@ -28,9 +28,6 @@
         <router-link class="navigation-box__link  navigation-box__link-profile" to="/">
             <img class="navigation-box__svg" src="../assets/icons/people.png" alt="heart">
         </router-link>
-        <router-link to="/catalog">
-            {{ $t('view_all_cars')}}
-        </router-link>
         <button class="language" @click="changeLanguage">
             <img src="../assets/icons/translate.png" class="translate" alt="translate">
             <h1 v-if="locale === 'en'">

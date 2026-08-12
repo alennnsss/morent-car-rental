@@ -1,6 +1,6 @@
 <template>
   <div class="catalog">
-    <TheFilter/>
+    <TheFilter class="filter"/>
     <div class="catalog-main">
         <TheOptions />
         <Cars />
@@ -19,6 +19,12 @@ import { useSearchStore } from '../stores/useSearchStore.js';
 </script>
 
 <style scoped>
+    .filter {
+      width: 20%;
+    }
+    .catalog-main {
+      width: 80%;
+    }
     .catalog {
         display: flex;
     }

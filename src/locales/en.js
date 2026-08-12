@@ -51,5 +51,8 @@ export default {
     max: 'MAX.',
     car_desc: 'A car designed for comfortable and enjoyable journeys, combining reliability, modern technology, and excellent performance for a confident drive in any conditions.',
     view_all_cars: 'View All Cars',
-    
+    type_car: 'Type Car',
+    steering: 'Steering',
+    gasoline: 'Gasoline',
+    capacity_p: 'Capacity'
 }   
