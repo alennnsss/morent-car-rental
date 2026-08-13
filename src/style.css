@@ -20,4 +20,15 @@ body.dark-theme {
   --button-color: #FFFFFF;
   --span-color: #D1D5DB;
 }
- 
+.payment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.enter-info {
+    display: flex;
+    justify-content: space-between;
+}
+.enter-info p {
+    color: #90A3BF;
+}

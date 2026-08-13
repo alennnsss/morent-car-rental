@@ -43,7 +43,7 @@ import { useSearchStore } from '../stores/useSearchStore.js';
 
 const filterStore = useFilterStore()
 const types = ref([
-    { id:1, title: 'Sport', count: 10 },
+    { id:1, title: 'Sport', count: 10 },//должно быть кол-во машин
     { id:2, title: 'SUV', count: 12 },
     { id:3, title: 'MPV', count: 16 },
     { id:4, title: 'Sedan', count: 20 },

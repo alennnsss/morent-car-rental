@@ -35,7 +35,7 @@ const v$ = useVuelidate(rules, userData)
 
 <template>
     <div class="box">
-        <div class="biling-info">
+        <div class="user-info">
             <div>
                 <h1>Billing Info</h1>
             </div>
@@ -86,21 +86,10 @@ const v$ = useVuelidate(rules, userData)
         display: flex;
         flex-direction: column;
         gap: 32px;
-        padding: 24px;
         background-color: var(--white-color);
+
+        padding: 24px;
         border-radius: 10px;
-    }
-    .biling-info {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-    }
-    .enter-info {
-        display: flex;
-        justify-content: space-between;
-    }
-    .enter-info p {
-        color: #90A3BF;
     }
     .input-container {
         display: flex;

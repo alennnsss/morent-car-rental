@@ -4,5 +4,17 @@ import './style.css'
 import App from './App.vue'
 import router from './router/index.js';
 import i18n from './locales/i18n.js';
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
+
 const pinia = createPinia()
-createApp(App).use(i18n).use(pinia).use(router).mount('#app')
+const app = createApp(App)
+app.use(PrimeVue, {
+    theme: {
+        preset: Aura
+    }
+});
+app.use(i18n)
+app.use(pinia)
+app.use(router)
+app.mount('#app')

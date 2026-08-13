@@ -8,7 +8,9 @@ import { useSearchStore } from '../stores/useSearchStore.js'
 import CarsSkeleton from './CarsSkeleton.vue'
 import BaseLoader from './BaseLoader.vue'
 import { useFilterStore } from '../stores/useFilterStore.js'
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
 const toastStore = useToastStore()
 const filterStore = useFilterStore()
 const searchStore = useSearchStore()
@@ -66,7 +68,7 @@ const reloadPage = () => {
     window.location.reload()
 }
 const showMore = () => (limitPerPage.value += 4)
-const showAll = () => (limitPerPage.value += 12)
+const showAll = () => (limitPerPage.value += cars.value.length)
 watch(
     limitPerPage,
     () => {
@@ -81,9 +83,12 @@ watch(
         <h2 class="cars-preview__title">
             {{ $t('popular_cars') }}
         </h2>
-        <router-link to="/catalog">
+        <router-link v-if="route.path !== '/catalog'" to="/catalog">
             View All
         </router-link>
+        <button v-else @click="showAll">
+            View All
+        </button>
     </div>
     <div class="no-cars" v-if="!isLoading && filteredCars.length === 0">
         <h2>

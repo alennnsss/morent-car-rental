@@ -2,7 +2,7 @@
     <div class="container">
         <div class="option-box">
             <div class="checkbox">
-                <input type="checkbox" v-model="radio" id="pick">
+                <Checkbox binary inputId="preview-checkbox"  v-model="radio" id="pick" />
                 <label for="pick">
                     <h2>{{ $t('pick_up')}}</h2>
                 </label>
@@ -12,28 +12,26 @@
                     <label for="pickup-locations">
                         <h2>{{ $t('locations')}}</h2>
                     </label>
-                    <select v-model="formData.cityPick" :disabled="!radio" name="pickup-locations" id="pickup-locations">
-                        <option value="default">{{ $t('select_city')}}</option>
-                        <option value="almaty">{{ $t('almaty')}}</option>
-                        <option value="london">{{ $t('london')}}</option>
-                        <option value="moskow">{{ $t('moskow')}}</option>
-                        <option value="newyork">{{ $t('newyork') }}</option>
-                    </select>
+                    <CascadeSelect v-model="bookStore.formData.cityPick" :disabled="!radio" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'districts']" placeholder="Select a City"/>
                 </div>  
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="pickup-date">
                         <h2>{{ $t('date')}}</h2>
                     </label>
-                    <input v-model="formData.datePick" :disabled="!radio" type="date" name="pickup-date" id="pickup-date">
+                    <DatePicker v-model="bookStore.formData.datePick" :disabled="!radio" />
                 </div>
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="pickup-time">
                         <h2>{{ $t('time')}}</h2>
                     </label>
-                    <input v-model="formData.timePick" :disabled="!radio" type="time" name="pickup-time" id="pickup-time">
-                </div> 
+                    <DatePicker v-model="bookStore.formData.timePick" :disabled="!radio" showIcon fluid iconDisplay="input" timeOnly inputId="templatedisplay">
+                        <template>
+                            <Clock />
+                        </template>
+                    </DatePicker>
+                </div>    
             </div>     
         </div>
         <button :disabled="!radio" @click="swapCities" class="inverse-button">
@@ -41,7 +39,7 @@
         </button>
         <div class="option-box">
             <div class="checkbox">
-                <input type="checkbox" v-model="radio" id="pick">
+                <Checkbox binary inputId="preview-checkbox"  v-model="radio" id="pick" />
                 <label for="drop">
                     <h2>{{ $t('drop_off') }}</h2>
                 </label>
@@ -51,48 +49,83 @@
                     <label for="dropoff-locations">
                         <h2>{{ $t('locations')}}</h2>
                     </label>
-                    <select v-model="formData.cityDrop" :disabled="!radio" name="dropoff-locations" id="dropoff-locations">
-                        <option value="default">{{ $t('select_city')}}</option>
-                        <option value="almaty">{{ $t('almaty')}}</option>
-                        <option value="london">{{ $t('london')}}</option>
-                        <option value="moskow">{{ $t('moskow')}}</option>
-                        <option value="newyork">{{ $t('newyork') }}</option>
-                    </select>
+                    <CascadeSelect v-model="bookStore.formData.cityDrop" :disabled="!radio" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'districts']" placeholder="Select a City"/>
                 </div>  
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="dropoff-date">
                         <h2>{{ $t('date')}}</h2>
                     </label>
-                    <input v-model="formData.dateDrop" :disabled="!radio" type="date" name="dropoff-date" id="dropoff-date">
+                    <DatePicker v-model="bookStore.formData.dateDrop" :disabled="!radio" />
                 </div>
                 <div class="border"></div>
                 <div class="selection-box">
                     <label for="dropoff-time">
                         <h2>{{ $t('time')}}</h2>
                     </label>
-                    <input v-model="formData.timeDrop" :disabled="!radio" type="time" name="dropoff-time" id="dropoff-time">
-                </div> 
+                    <DatePicker v-model="bookStore.formData.timeDrop" :disabled="!radio" showIcon fluid iconDisplay="input" timeOnly inputId="templatedisplay">
+                        <template>
+                            <Clock />
+                        </template>
+                    </DatePicker>
             </div>     
-        </div>    
-    </div>   
+        </div>   
+    </div>     
+    </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref } from 'vue';
+import { CascadeSelect } from 'primevue';
+import DatePicker from 'primevue/datepicker';
+import Checkbox from 'primevue/checkbox';
+import { useBookStore } from '../stores/useBookStore';
 
+const bookStore = useBookStore()
 const radio = ref(false);
-const formData = reactive({
-    cityPick: '',
-    cityDrop: '',
-    datePick: '',
-    dateDrop: '',
-    timePick: '',
-    timeDrop: '',
-})
 
+const countries = ref([
+    {
+        name: 'Kazakhstan',
+        code: 'KZ',
+        states: [
+            {
+                name: 'Almaty',
+                districts: [
+                    { cname: 'Almaly', code: 'ALM' },
+                    { cname: 'Auezov', code: 'AUZ' },
+                    { cname: 'Bostandyk', code: 'BOS' },
+                    { cname: 'Zhetysu', code: 'ZHE' },
+                    { cname: 'Medeu', code: 'MED' },
+                    { cname: 'Nauryzbay', code: 'NAU' },
+                    { cname: 'Turksib', code: 'TUR' },
+                    { cname: 'Alatau', code: 'ALA' },
+                ]
+            },
+            {
+                name: 'Astana',
+                districts: [
+                    { cname: 'Almaty', code: 'AST-ALM' },
+                    { cname: 'Baikonur', code: 'AST-BAI' },
+                    { cname: 'Yesil', code: 'AST-YES' },
+                    { cname: 'Saryarka', code: 'AST-SAR' },
+                ]
+            },
+            {
+                name: 'Shymkent',
+                districts: [
+                    { cname: 'Abay', code: 'SHY-ABA' },
+                    { cname: 'Al-Farabi', code: 'SHY-ALF' },
+                    { cname: 'Enbekshinsky', code: 'SHY-ENB' },
+                    { cname: 'Karatau', code: 'SHY-KAR' },
+                    { cname: 'Turan', code: 'SHY-TUR' },
+                ]
+            }    
+        ]
+    }
+])
 const swapCities = () => {
-    [formData.cityPick,formData.cityDrop] = [formData.cityDrop, formData.cityPick]
+    [bookStore.formData.cityPick,bookStore.formData.cityDrop] = [bookStore.formData.cityDrop, bookStore.formData.cityPick]
 }
 </script>
 
@@ -107,8 +140,7 @@ const swapCities = () => {
     .option-box {
         background-color: var(--white-color);
         border-radius: 10px;
-        width: 45%;
-        padding: 26px 48px 24px 48px;
+        padding: 20px;
     }
     .inverse-button {
         border-radius: 10px;
@@ -156,6 +188,6 @@ const swapCities = () => {
         color: var(--span-color);
     }
     input {
-        max-width: 80px;
+        max-width: 40px;
     }
 </style>
