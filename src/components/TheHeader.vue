@@ -46,14 +46,12 @@
 
 <script setup>
     import { ref, onMounted, computed } from 'vue';
-    import { useCartStore } from '../stores/useCartStore';
     import { useSearchStore } from '../stores/useSearchStore';
     import { useI18n } from 'vue-i18n';
     import { useFavouriteStore } from '../stores/useFavouriteStore';
 
     const { locale } = useI18n({useScope: 'global'});
     const searchStore = useSearchStore()
-    const cartStore = useCartStore();
     const favouriteStore = useFavouriteStore()
     const currentTheme = ref(localStorage.getItem('theme') || 'white')
     const nameInputRef = ref(null);

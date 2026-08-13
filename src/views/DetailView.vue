@@ -90,7 +90,7 @@
                             <h1>${{ product.pricePerDay }}.00/</h1>
                             <p class="day">{{ $t('day') }}</p>
                         </div>    
-                        <router-link to="/checkout">
+                        <router-link class="checkout" to="/checkout">
                             <button class="rent">
                                 {{ $t('rent_now') }}
                             </button>
@@ -233,10 +233,12 @@
     background-color: var(--button-dark-color);
     border-radius: 4px;
     border: none;
-    max-width: 140px;
     height: 56px;
     color: white;
     width: 100%;    
+}
+.checkout {
+    width: 140px;
 }
 h1 {
     font-weight: 500;

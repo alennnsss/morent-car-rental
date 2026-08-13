@@ -4,7 +4,6 @@ import { db } from '../api/firebase.js'
 import { collection, getDocs, limit, query } from 'firebase/firestore'
 import { useFavouriteStore } from '../stores/useFavouriteStore.js'
 import { useToastStore } from '../stores/useToastStore.js'
-import { useCartStore } from '../stores/useCartStore.js'
 import { useSearchStore } from '../stores/useSearchStore.js'
 import CarsSkeleton from './CarsSkeleton.vue'
 import BaseLoader from './BaseLoader.vue'
@@ -17,7 +16,6 @@ const favoriteStore = useFavouriteStore()
 const isLoading = ref(false)
 const cars = ref([])
 const limitPerPage = ref(4)
-const cartStore = useCartStore()
 const isButtonLoading = ref(null)
 
 const fetchCars = async () => {
@@ -66,25 +64,6 @@ const filteredCars = computed(() => {
 })
 const reloadPage = () => {
     window.location.reload()
-}
-const handleBuyClick = async (car) => {
-    isButtonLoading.value = car.id
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    try {
-        cartStore.addToCart({
-            id: car.id,
-            name: car.name,
-            type: car.type,
-            capacity: car.capacity,
-            fuelCapacity: car.fuelCapacity,
-            price: car.pricePerDay
-        })
-    } catch (error) {
-        console.log('error', error.message)
-        toastStore.addToast('Error to add to cart', 'error')
-    } finally {
-        isButtonLoading.value = null
-    }
 }
 const showMore = () => (limitPerPage.value += 4)
 const showAll = () => (limitPerPage.value += 12)
@@ -183,7 +162,6 @@ watch(
                 <BaseLoader v-if="isButtonLoading" :size="20" />
                 <router-link v-else :to="`/cars/${car.id}`">
                     <button
-                        @click="handleBuyClick(car)"
                         :disabled="isButtonLoading === car.id"
                         class="rent-now__button"
                     >
