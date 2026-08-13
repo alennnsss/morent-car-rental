@@ -43,7 +43,7 @@ const nextStep = () => {
 }
 const prevStep = () => {
     if(currentStepIndex.value >0) {
-        currentStepIndex--;
+        currentStepIndex.value--;
     }
 }
 </script>
