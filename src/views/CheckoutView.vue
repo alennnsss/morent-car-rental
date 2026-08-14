@@ -23,6 +23,7 @@
 import StepBill from '../components/checkout/StepBill.vue';
 import StepPayment from '../components/checkout/StepPayment.vue';
 import StepRent from '../components/checkout/StepRent.vue';
+import StepConfirmation from '../components/checkout/StepConfirmation.vue';
 import { shallowRef } from 'vue';
 import { ref, computed } from 'vue';
 
@@ -31,7 +32,8 @@ const currentStepIndex = ref(0);
 const steps = shallowRef([
     {name: 'Billing Info', component: StepBill},
     {name: 'Rental Info', component: StepRent},
-    {name: 'Payment Method', component: StepPayment}
+    {name: 'Payment Method', component: StepPayment},
+    {name: 'Confirmation', component: StepConfirmation}
 ]);
 
 const currentComponent = computed(() => steps.value[currentStepIndex.value].component);

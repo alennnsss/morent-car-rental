@@ -5,9 +5,9 @@
         <TheOptions />
         <Cars />
         <router-view/>
-        <div class="dount-wrapper">
+        <!-- <div class="dount-wrapper">
             <Doughnut :data="chartData" :options="chartOptions"/>
-        </div>
+        </div> -->
     </div>    
   
   

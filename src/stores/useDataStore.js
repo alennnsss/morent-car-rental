@@ -13,11 +13,13 @@ export const useDataStore = defineStore('data', () => {
         expDate: savedData.expDate || '',
         cardHolder: savedData.cardHolder || '',
         cvc: savedData.cvc || '',
-        town: savedData.town || ''
+        town: savedData.town || '',
+        terms_right: false,
+        send_emails: true,
     })
     watch(profileData, (newValue) => {
-        localStorage.setItem('profile_data', newValue)
-    })
+        localStorage.setItem('profile_data', JSON.stringify(newValue))
+    }, {deep: true})
     
     return {
         profileData

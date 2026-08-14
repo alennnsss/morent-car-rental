@@ -31,4 +31,11 @@ import TheOptions from '../TheOptions.vue';
     .options {
         background-color: var(--white-color);
     }
+    .enter-info {
+        display: flex;
+        justify-content: space-between;
+    }   
+    .enter-info p {
+        color: #90A3BF;
+    }
 </style>

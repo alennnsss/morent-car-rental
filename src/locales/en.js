@@ -73,5 +73,12 @@ export default {
     cardNumber: 'Card Number',
     cardHolder: 'Card Holder',
     expDate: 'Expiration Date',
-    cvc: 'CVC'
+    cvc: 'CVC',
+    confirmation: 'Confirmation',
+    getting_closer: 'We are getting to the end. Just few clicks and your rental is ready!',
+    step4: 'Step 4 of 4',
+    sending: 'I agree with sending an Marketing and newsletter emails. No spam, promissed!',
+    terms_rights: 'I agree with our terms and conditions and privacy policy.',
+    all_data:'All your data are safe',
+    advanced_sec: 'We are using the most advanced security to provide you the best experience ever.'
 }   

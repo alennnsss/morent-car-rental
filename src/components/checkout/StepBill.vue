@@ -95,5 +95,38 @@ const v$ = useVuelidate(rules, dataStore.profileData)
     h1 {
         font-size: 20px;
     }
-    
+    .payment-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .enter-info {
+        display: flex;
+        justify-content: space-between;
+    }
+    .enter-info p {
+        color: #90A3BF;
+    }
+    .box {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      background-color: var(--white-color);
+      padding: 24px;
+      border-radius: 10px;
+    }
+    .input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .input-item {
+        display: flex;
+        gap: 32px;
+    }
+
+    .error-msg {
+        color: red;
+        font-size: 12px;
+    }
 </style>
