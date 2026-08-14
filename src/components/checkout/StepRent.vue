@@ -2,14 +2,14 @@
     <div class="box">
         <div class="user-info">
             <div>
-                <h1>Rental info</h1>
+                <h1>{{ $t('rental_info') }}</h1>
             </div>
             <div class="enter-info">
-                <p>Please enter your rental date</p>
-                <p>Step 2 of 4</p>
+                <p>{{ $t('please_rental') }}</p>
+                <p>{{ $t('step2') }}</p>
             </div>
         </div>  
-        <div>
+        <div class="options">
             <TheOptions />
         </div>
     </div>
@@ -22,9 +22,13 @@ import TheOptions from '../TheOptions.vue';
 <style scoped>
     .box {
         background-color: var(--white-color);
-
+        padding: 24px;
+        border-radius: 10px;
     }
     h1 {
         font-size: 20px;
+    }
+    .options {
+        background-color: var(--white-color);
     }
 </style>

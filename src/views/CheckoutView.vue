@@ -6,7 +6,7 @@
             </KeepAlive>
         </div>
         <div class="wizard-actions">
-            <button @click="prevStep" v-if="currentStepIndex !== 0">
+            <button @click="prevStep" >
                 <img src="../assets/icons/back.png" alt="back">
             </button>
             <button @click="nextStep" v-if="currentStepIndex < steps.length -1">
@@ -30,7 +30,8 @@ const currentStepIndex = ref(0);
 
 const steps = shallowRef([
     {name: 'Billing Info', component: StepBill},
-    {name: 'Rental Info', component: StepRent}
+    {name: 'Rental Info', component: StepRent},
+    {name: 'Payment Method', component: StepPayment}
 ]);
 
 const currentComponent = computed(() => steps.value[currentStepIndex.value].component);
@@ -46,13 +47,14 @@ const prevStep = () => {
 }
 </script>
 
-<style>
+<style scoped>
     .checkout-page {
-        background-color: #F6F7F9;
         padding: 32px;
+        background-color: #F6F7F9;
     }
     .step-container {
         border-radius: 10px;
+        background-color: white;
     }
     .steps-indicator {
         display: flex;

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="box">
         <div class="option-box">
             <div class="checkbox">
                 <Checkbox binary inputId="preview-checkbox"  v-model="radio" id="pick" />
@@ -130,7 +130,7 @@ const swapCities = () => {
 </script>
 
 <style scoped>
-    .container {
+    .box {
         display: flex;
         width: 100%;
         padding: 32px 26px;;

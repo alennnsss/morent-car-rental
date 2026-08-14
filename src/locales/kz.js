@@ -54,5 +54,20 @@ export default {
     type_car: 'Көлік түрі',
     steering: 'Рөл',
     gasoline: 'Бензин',
-    capacity_p: 'Сыйымдылық'
+    capacity_p: 'Сыйымдылық',
+    step1: '4 қадамның 1-і',
+    billing_info: 'Есеп айырысу деректері',
+    please_enter: 'Есеп айырысу деректерін енгізіңіз',
+    name: 'Аты-жөні',
+    address: 'Мекенжай',
+    phoneNumber: 'Телефон нөмірі',
+    your_name: 'Сіздің аты-жөніңіз',
+    town_city: 'Қала',
+    rental_info: 'Жалға алу туралы ақпарат',
+    please_rental: 'Жалға алу күнін енгізіңіз',
+    step2: '4 қадамның 2-сі',
+    payment: 'Төлем әдісі',
+    please_card: 'Төлем әдісін енгізіңіз',
+    step3: '4 қадамның 3-шісі',
+    credit_card: 'Несие картасы'
 }

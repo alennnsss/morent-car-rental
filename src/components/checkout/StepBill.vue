@@ -1,13 +1,9 @@
 <script setup>
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required, minLength } from '@vuelidate/validators';
-import { reactive } from 'vue';
-const userData = reactive({
-    name: '',
-    phoneNumber: '',
-    address: '',
-    city: ''
-})
+import { useDataStore } from '../../stores/useDataStore';
+
+const dataStore = useDataStore()
 const phoneRegex = /^\+?[0-9]{10,15}$/
 const rules = {
     name: {
@@ -30,32 +26,32 @@ const rules = {
         minLength: helpers.withMessage('Address should be at least 5 symbols', minLength(5))
     }
 }
-const v$ = useVuelidate(rules, userData)
+const v$ = useVuelidate(rules, dataStore.profileData)
 </script>
 
 <template>
     <div class="box">
         <div class="user-info">
             <div>
-                <h1>Billing Info</h1>
+                <h1>{{ $t('billing_info') }}</h1>
             </div>
             <div class="enter-info">
-                <p>Please enter your billing info</p>
-                <p>Step 1 of 4</p>
+                <p>{{ $t('please_enter') }}</p>
+                <p>{{ $t('step1')}}</p>
             </div>
         </div>    
         <div class="input-container">
             <div class="input-item">
                 <label for="name" :class="{ 'has-error': v$.name.$error }">
-                    Name
-                    <input @blur="v$.name.$touch()" v-model="userData.name" id="name" type="text" placeholder="Your Name">
+                    {{ $t('name') }}
+                    <input @blur="v$.name.$touch()" v-model="dataStore.profileData.name" id="name" type="text" :placeholder="$t('your_name')">
                     <span class="error-msg" v-if="v$.name.$error">
                         {{ v$.name.$errors[0].$message }}
                     </span>
                 </label>
                 <label for="phone" :class="{ 'has-error': v$.phoneNumber.$error }">
-                    Phone Number
-                    <input @blur="v$.phoneNumber.$touch()" v-model="userData.phoneNumber" type="tel" id="phone" placeholder="Phone number">
+                    {{ $t('phoneNumber') }}
+                    <input @blur="v$.phoneNumber.$touch()" v-model="dataStore.profileData.phoneNumber" type="tel" id="phone" :placeholder="$t('phoneNumber')">
                     <span class="error-msg" v-if="v$.phoneNumber.$error">
                         {{ v$.phoneNumber.$errors[0].$message }}
                     </span>
@@ -63,15 +59,15 @@ const v$ = useVuelidate(rules, userData)
             </div>
             <div class="input-item">
                 <label for="address" :class="{ 'has-error': v$.address.$error }">
-                    Address
-                    <input @blur="v$.address.$touch()" v-model="userData.address" id="address" type="text" placeholder="Address">
+                    {{ $t('address') }}
+                    <input @blur="v$.address.$touch()" v-model="dataStore.profileData.address" id="address" type="text" :placeholder="$t('address')">
                     <span class="error-msg" v-if="v$.address.$error">
                         {{ v$.address.$errors[0].$message }}
                     </span>
                 </label>
                 <label for="location" :class="{ 'has-error': v$.city.$error }">
-                    Town/ City
-                    <input @blur="v$.city.$touch()" v-model="userData.city" type="text" id="location" placeholder="Town or city">
+                    {{ $t('town_city') }}
+                    <input @blur="v$.city.$touch()" v-model="dataStore.profileData.town" type="text" id="location" :placeholder="$t('town_city')">
                     <span class="error-msg" v-if="v$.city.$error">
                         {{ v$.city.$errors[0].$message }}
                     </span>
@@ -82,24 +78,6 @@ const v$ = useVuelidate(rules, userData)
 </template>
 
 <style scoped>
-    .box {
-        display: flex;
-        flex-direction: column;
-        gap: 32px;
-        background-color: var(--white-color);
-
-        padding: 24px;
-        border-radius: 10px;
-    }
-    .input-container {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-    .input-item {
-        display: flex;
-        gap: 32px;
-    }
     input {
         width: 386px;
         width: 100%;
@@ -117,8 +95,5 @@ const v$ = useVuelidate(rules, userData)
     h1 {
         font-size: 20px;
     }
-    .error-msg {
-        color: red;
-        font-size: 12px;
-    }
+    
 </style>
