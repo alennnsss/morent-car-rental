@@ -12,9 +12,6 @@
             <button @click="nextStep" v-if="currentStepIndex < steps.length -1">
                 <img src="../assets/icons/next.png" alt="next">
             </button>
-            <button v-else>
-                Rent Now
-            </button>
         </div>
     </div>
 </template>

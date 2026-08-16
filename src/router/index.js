@@ -1,9 +1,9 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CatalogView from "../views/CatalogView.vue";
 import DetailView from '../views/DetailView.vue';
 import CheckoutView from "../views/CheckoutView.vue";
-
+import AdminView from "../views/AdminView.vue";
 const routes = [
     {
         path: '/',
@@ -24,11 +24,16 @@ const routes = [
         path: '/checkout',
         name:'checkout',
         component: CheckoutView
+    },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: AdminView,
     }
 ]
 
 const router = createRouter({
-    history: createWebHashHistory(import.meta.env.BASE_URL),
+    history: createWebHistory(),
     routes
 })  
 export default router

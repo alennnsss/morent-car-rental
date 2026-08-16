@@ -208,6 +208,7 @@
         }
         .navigation-box__link-profile {
             display: flex;
+            gap: 30px;
         }
     }
 </style>

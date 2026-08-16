@@ -80,5 +80,17 @@ export default {
     sending: 'I agree with sending an Marketing and newsletter emails. No spam, promissed!',
     terms_rights: 'I agree with our terms and conditions and privacy policy.',
     all_data:'All your data are safe',
-    advanced_sec: 'We are using the most advanced security to provide you the best experience ever.'
+    advanced_sec: 'We are using the most advanced security to provide you the best experience ever.',
+    main_menu: 'M A I N  M E N U',
+    dashboard: 'Dashboard',
+    car_rent: 'Car Rent',
+    insight: 'Insight',
+    reimburse: "Reimburse",
+    inbox: 'Inbox',
+    calendar: 'Calender',
+    preferences: 'P R E F E R E N C E S',
+    settings: 'Settings',
+    help_center: 'Help & Center',
+    dark_mode: 'Dark Mode',
+    log_out: 'Log Out'
 }   

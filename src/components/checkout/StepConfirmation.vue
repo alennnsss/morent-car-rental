@@ -24,7 +24,9 @@
                 </span>
             </div>
             <div class="confirmation-closing">
-                <button @click="submit">{{ $t('rent_now') }}</button>
+                <router-link to="/admin">
+                    <button @click="submit">{{ $t('rent_now') }}</button>
+                </router-link>
                 <div class="safety">
                     <img width="32px" height="32px" src="../../assets/images/safety.png" alt="safety icon">
                     <div class="all_data">

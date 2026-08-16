@@ -4,7 +4,9 @@ import CookiesBanner from './components/CookiesBanner.vue';
 import ScrollTopButton from './components/ScrollTopButton.vue';
 import TheHeader from './components/TheHeader.vue';
 import TheFooter from './components/TheFooter.vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
 </script>
 
 <template>
@@ -13,7 +15,7 @@ import TheFooter from './components/TheFooter.vue';
   <cookies-banner />
   <scroll-top-button />
   <the-toast />
-  <the-footer />
+  <the-footer v-if="route.name!== 'admin'" />
 </template>
 <style>
   .container {
