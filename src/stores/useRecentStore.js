@@ -1,22 +1,33 @@
 import { defineStore } from "pinia";
-import { ref,watch } from "vue";
+import { ref, watch } from "vue";
 
-export const useRecentStore = defineStore('recent',() => {
-    const items = ref(JSON.parse(localStorage.getItem('recent')) || []);
+export const useRecentStore = defineStore('recent', () => {
+    const savedRecent = localStorage.getItem('recent');
+
+    const items = ref(
+        savedRecent ? JSON.parse(savedRecent) : []
+    );
 
     const addToRecent = (product) => {
-        const existingItem = items.value.find(item => item.id === product.id);
-        if(existingItem) {
-            return
-        } else {
-            items.value.push({...product})
-        }
-    }
+        if (!product?.id) return;
+
+        items.value = items.value.filter(item => item.id !== product.id);
+        items.value.unshift({
+            id: product.id,
+            name: product.name,
+            type: product.type,
+            image: product.image,
+            pricePerDay: product.pricePerDay
+        });
+        items.value = items.value.slice(0, 5);
+    };
+
     watch(items,(newValue) => {
-        localStorage.setItem('recent', newValue)
-    })
+            localStorage.setItem('recent', JSON.stringify(newValue));
+    },{deep: true,immediate: true});
+
     return {
-        addToRecent,
-        items
-    }
-})
+        items,
+        addToRecent
+    };
+});

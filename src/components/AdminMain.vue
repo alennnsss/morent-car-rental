@@ -52,6 +52,7 @@ const loadCar = async() => {
             id: car.data().id,
             ...car.data()
         }
+        recentStore.addToRecent(product.value)
     } catch(error) {
         console.error('Error', error.message)
         isError.value = true
@@ -210,14 +211,24 @@ const formatTime = (date) => {
                 <div>
                     <h1>{{ $t('recent_transaction') }}</h1>
                 </div>
-                <div v-for="item in recentStore.items" :key="item.id">
-                    <div class="recent-image">
-                        <img :src="item.image" :alt="item.title">
+                <div class="recent-box" v-for="item in recentStore.items" :key="item.id">
+                    <div class="information">               
+                        <div class="recent-info">
+                            <div class="recent-image">
+                                <img :src="item.image" :alt="item.title">
+                            </div>
+                            <div class="recent-title">
+                                <h1>{{ item.name }}</h1>
+                                <p>{{ item.type }}</p>
+                            </div>
+                            </div>
+                            <div class="recent-price">
+                                <p>20 July</p>
+                                <h1>${{ item.pricePerDay }}.00</h1>
+                            </div>
                     </div>
-                    <div>
-
-                    </div>
-                </div>
+                    <div class="border-tran"></div>
+                </div>    
             </div>
         </div>    
     </main>
@@ -227,7 +238,9 @@ const formatTime = (date) => {
     main {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        width: 80%;
+        width: 100%;
+        max-width: 1400px;
+        box-sizing: border-box;
         gap: 32px;
         background-color: var(--main-color);
         padding: 32px;
@@ -331,10 +344,9 @@ const formatTime = (date) => {
         font-weight: 700;
     }
     .dount-wrapper {
-        height: 220px;
-        width: 220px;
-        margin-top: 20px;
         position: relative;
+        width: 100%;
+        max-width: 220px;
     }
     .chart-text {
         position: absolute;
@@ -371,7 +383,8 @@ const formatTime = (date) => {
     .chart-box {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 30px;
         margin-top: 10px;
     }
     .legend {
@@ -416,11 +429,82 @@ const formatTime = (date) => {
     .mpv {
         background-color: #A6CEF2;
     }
+    .information {
+        display: flex;
+        justify-content: space-between;
+    }
     .recent-tran {
         display: flex;
         flex-direction: column;
         padding: 24px;
         background-color: var(--white-color);
         border-radius: 10px;
+    }
+    .recent-box {
+        display: flex;
+        flex-direction: column;
+    }
+    .recent-info {
+        display: flex;
+        gap: 16px;
+        margin-top: 43px;
+    }
+    .recent-image img {
+        width: 114px;
+        height: 66px;
+    }
+    .recent-title {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .recent-title h1 {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    .recent-title p {
+        color: #90A3BF;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .recent-price {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 40px;
+    }
+    .border-tran {
+        border-bottom: 1px solid #C3D4E966;
+    }
+    @media (max-width: 1100px) {
+        .chart-box {
+            flex-direction: column;
+        }
+
+        .legend {
+            width: 100%;
+        }
+
+        .legend-item {
+            width: 100%;
+        }
+
+        .statistics {
+            height: auto;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .dount-wrapper {
+            max-width: 180px;
+        }
+
+        .legend-item {
+            gap: 15px;
+        }
+
+        .statistics {
+            padding: 16px;
+        }
     }
 </style>
