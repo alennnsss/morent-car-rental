@@ -210,5 +210,17 @@
             display: flex;
             gap: 30px;
         }
+        .header-logo-box {
+            display: flex;
+            gap: 0;
+        }
+        .header {
+            padding: 24px;
+        }
+    }
+    @media screen and (max-width: 368px) {
+        .header {
+            padding: 12px;
+        }
     }
 </style>

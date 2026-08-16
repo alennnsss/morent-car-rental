@@ -53,7 +53,6 @@ const prevStep = () => {
     }
     .step-container {
         border-radius: 10px;
-        background-color: white;
     }
     .steps-indicator {
         display: flex;
@@ -73,4 +72,5 @@ const prevStep = () => {
         width: 100%;
         justify-content: space-between;
     }
+    
 </style>

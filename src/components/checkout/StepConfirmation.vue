@@ -1,43 +1,45 @@
 <template>
     <div class="confirmation-block">
-        <div class="confirmation-intro">
-            <div class="confirmation-title">
-                <h1>{{ $t('confirmation') }}</h1>
-            </div>
-            <div class="getting-closer">
-                <p>{{ $t('getting_closer') }}</p>
-            </div>
-        </div>    
-        <div class="confirmation-check">
-            <div class="checkbox">
-                <Checkbox v-model="dataStore.profileData.send_emails" binary inputId="send-emails" />
-                <label for="send-emails">{{ $t('sending') }}</label>
-                <span class="error-msg" v-if="v$.send_emails.$error">
-                    {{ v$.send_emails.$errors[0].$message }}
-                </span>
-            </div>
-            <div class="checkbox">
-                <Checkbox v-model="dataStore.profileData.terms_right" binary inputId="terms-rights" />
-                <label for="terms-rights">{{ $t('terms_rights') }}</label>
-                <span class="error-msg" v-if="v$.terms_right.$error">
-                    {{ v$.terms_right.$errors[0].$message }}
-                </span>
-            </div>
-            <div class="confirmation-closing">
-                <router-link to="/admin">
-                    <button @click="submit">{{ $t('rent_now') }}</button>
-                </router-link>
-                <div class="safety">
-                    <img width="32px" height="32px" src="../../assets/images/safety.png" alt="safety icon">
-                    <div class="all_data">
-                        <h2>{{ $t('all_data') }}</h2>
-                        <p>{{ $t('advanced_sec') }}</p>
+        <div class="confirmation">
+            <div class="confirmation-intro">
+                <div class="confirmation-title">
+                    <h1>{{ $t('confirmation') }}</h1>
+                </div>
+                <div class="getting-closer">
+                    <p>{{ $t('getting_closer') }}</p>
+                </div>
+            </div>    
+            <div class="confirmation-check">
+                <div class="checkbox">
+                    <Checkbox v-model="dataStore.profileData.send_emails" binary inputId="send-emails" />
+                    <label for="send-emails">{{ $t('sending') }}</label>
+                    <span class="error-msg" v-if="v$.send_emails.$error">
+                        {{ v$.send_emails.$errors[0].$message }}
+                    </span>
+                </div>
+                <div class="checkbox">
+                    <Checkbox v-model="dataStore.profileData.terms_right" binary inputId="terms-rights" />
+                    <label for="terms-rights">{{ $t('terms_rights') }}</label>
+                    <span class="error-msg" v-if="v$.terms_right.$error">
+                        {{ v$.terms_right.$errors[0].$message }}
+                    </span>
+                </div>
+                <div class="confirmation-closing">
+                    <router-link>
+                        <button @click="submit">{{ $t('rent_now') }}</button>
+                    </router-link>
+                    <div class="safety">
+                        <img width="32px" height="32px" src="../../assets/images/safety.png" alt="safety icon">
+                        <div class="all_data">
+                            <h2>{{ $t('all_data') }}</h2>
+                            <p>{{ $t('advanced_sec') }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        
+            </div>
+        </div>    
+        <RentalSummary />
     </div>
 </template>
 
@@ -46,6 +48,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { helpers, required, sameAs  } from '@vuelidate/validators';
 import { useDataStore } from '../../stores/useDataStore';
 import Checkbox from 'primevue/checkbox';
+import RentalSummary from '../RentalSummary.vue';
 const dataStore = useDataStore()
 const rules = {
     send_emails:{
@@ -70,9 +73,12 @@ const submit = async () => {
 <style scoped>
     .confirmation-block {
         display: flex;
+        gap: 32px;
+    }
+    .confirmation {
+        display: flex;
         flex-direction: column;
         gap: 32px;
-        padding: 24px;
     }
     .confirmation-intro {
         display: flex;

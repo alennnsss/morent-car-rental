@@ -2,6 +2,7 @@
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required, minLength } from '@vuelidate/validators';
 import { useDataStore } from '../../stores/useDataStore';
+import RentalSummary from '../RentalSummary.vue';
 
 const dataStore = useDataStore()
 const phoneRegex = /^\+?[0-9]{10,15}$/
@@ -30,54 +31,63 @@ const v$ = useVuelidate(rules, dataStore.profileData)
 </script>
 
 <template>
-    <div class="box">
-        <div class="user-info">
-            <div>
-                <h1>{{ $t('billing_info') }}</h1>
+    <div class="main">
+        <div class="box">
+            <div class="user-info">
+                <div>
+                    <h1>{{ $t('billing_info') }}</h1>
+                </div>
+                <div class="enter-info">
+                    <p>{{ $t('please_enter') }}</p>
+                    <p>{{ $t('step1')}}</p>
+                </div>
+            </div>    
+            <div class="input-container">
+                <div class="input-item">
+                    <label for="name" :class="{ 'has-error': v$.name.$error }">
+                        {{ $t('name') }}
+                        <input @blur="v$.name.$touch()" v-model="dataStore.profileData.name" id="name" type="text" :placeholder="$t('your_name')">
+                        <span class="error-msg" v-if="v$.name.$error">
+                            {{ v$.name.$errors[0].$message }}
+                        </span>
+                    </label>
+                    <label for="phone" :class="{ 'has-error': v$.phoneNumber.$error }">
+                        {{ $t('phoneNumber') }}
+                        <input @blur="v$.phoneNumber.$touch()" v-model="dataStore.profileData.phoneNumber" type="tel" id="phone" :placeholder="$t('phoneNumber')">
+                        <span class="error-msg" v-if="v$.phoneNumber.$error">
+                            {{ v$.phoneNumber.$errors[0].$message }}
+                        </span>
+                    </label>
+                </div>
+                <div class="input-item">
+                    <label for="address" :class="{ 'has-error': v$.address.$error }">
+                        {{ $t('address') }}
+                        <input @blur="v$.address.$touch()" v-model="dataStore.profileData.address" id="address" type="text" :placeholder="$t('address')">
+                        <span class="error-msg" v-if="v$.address.$error">
+                            {{ v$.address.$errors[0].$message }}
+                        </span>
+                    </label>
+                    <label for="location" :class="{ 'has-error': v$.city.$error }">
+                        {{ $t('town_city') }}
+                        <input @blur="v$.city.$touch()" v-model="dataStore.profileData.town" type="text" id="location" :placeholder="$t('town_city')">
+                        <span class="error-msg" v-if="v$.city.$error">
+                            {{ v$.city.$errors[0].$message }}
+                        </span>
+                    </label>
+                </div>
             </div>
-            <div class="enter-info">
-                <p>{{ $t('please_enter') }}</p>
-                <p>{{ $t('step1')}}</p>
-            </div>
-        </div>    
-        <div class="input-container">
-            <div class="input-item">
-                <label for="name" :class="{ 'has-error': v$.name.$error }">
-                    {{ $t('name') }}
-                    <input @blur="v$.name.$touch()" v-model="dataStore.profileData.name" id="name" type="text" :placeholder="$t('your_name')">
-                    <span class="error-msg" v-if="v$.name.$error">
-                        {{ v$.name.$errors[0].$message }}
-                    </span>
-                </label>
-                <label for="phone" :class="{ 'has-error': v$.phoneNumber.$error }">
-                    {{ $t('phoneNumber') }}
-                    <input @blur="v$.phoneNumber.$touch()" v-model="dataStore.profileData.phoneNumber" type="tel" id="phone" :placeholder="$t('phoneNumber')">
-                    <span class="error-msg" v-if="v$.phoneNumber.$error">
-                        {{ v$.phoneNumber.$errors[0].$message }}
-                    </span>
-                </label>
-            </div>
-            <div class="input-item">
-                <label for="address" :class="{ 'has-error': v$.address.$error }">
-                    {{ $t('address') }}
-                    <input @blur="v$.address.$touch()" v-model="dataStore.profileData.address" id="address" type="text" :placeholder="$t('address')">
-                    <span class="error-msg" v-if="v$.address.$error">
-                        {{ v$.address.$errors[0].$message }}
-                    </span>
-                </label>
-                <label for="location" :class="{ 'has-error': v$.city.$error }">
-                    {{ $t('town_city') }}
-                    <input @blur="v$.city.$touch()" v-model="dataStore.profileData.town" type="text" id="location" :placeholder="$t('town_city')">
-                    <span class="error-msg" v-if="v$.city.$error">
-                        {{ v$.city.$errors[0].$message }}
-                    </span>
-                </label>
-            </div>
-        </div>
+        </div>   
+        <RentalSummary />
     </div>    
 </template>
 
 <style scoped>
+    .main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        
+    }
     input {
         width: 386px;
         width: 100%;
@@ -114,6 +124,7 @@ const v$ = useVuelidate(rules, dataStore.profileData)
       background-color: var(--white-color);
       padding: 24px;
       border-radius: 10px;
+      height: 336px;
     }
     .input-container {
         display: flex;

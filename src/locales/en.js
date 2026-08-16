@@ -92,5 +92,13 @@ export default {
     settings: 'Settings',
     help_center: 'Help & Center',
     dark_mode: 'Dark Mode',
-    log_out: 'Log Out'
+    log_out: 'Log Out',
+    rental_summary: 'Rental Summary',
+    prices_may: 'Prices may change depending on the length of the rental and the price of your rental car.',
+    subtotal: 'Subtotal',
+    tax: 'Tax',
+    promo_code: 'Apply promo code',
+    apply_now: 'Apply now',
+    total_price: 'Total Rental Price',
+    overall: 'Overall price and includes rental discount'
 }   

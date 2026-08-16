@@ -167,6 +167,7 @@
                 </div>    
             </div>
         </div>    
+        <RentalSummary />
     </div> 
 </template>
 
@@ -176,7 +177,7 @@ import { useVuelidate } from '@vuelidate/core';
 import { helpers, maxLength, minLength, required, email } from '@vuelidate/validators';
 import { useDataStore } from '../../stores/useDataStore';
 import { ref } from 'vue';
-
+import RentalSummary from '../RentalSummary.vue';
 const selectedPayment = ref('')
 const dataStore = useDataStore()
 const rules = {

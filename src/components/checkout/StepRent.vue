@@ -12,11 +12,13 @@
         <div class="options">
             <TheOptions />
         </div>
+        <RentalSummary />
     </div>
 </template>
 
 <script setup>
 import TheOptions from '../TheOptions.vue';
+import RentalSummary from '../RentalSummary.vue';
 </script>
 
 <style scoped>

@@ -21,7 +21,7 @@ const routes = [
         component: DetailView
     },
     {
-        path: '/checkout',
+        path: '/checkout/:id',
         name:'checkout',
         component: CheckoutView
     },
