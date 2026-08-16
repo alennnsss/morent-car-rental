@@ -100,5 +100,9 @@ export default {
     promo_code: 'Apply promo code',
     apply_now: 'Apply now',
     total_price: 'Total Rental Price',
-    overall: 'Overall price and includes rental discount'
+    overall: 'Overall price and includes rental discount',
+    details_rental: 'Details Rental',
+    top5: 'Top 5 Car Rental',
+    recent_transaction: 'Recent Transaction',
+    
 }   

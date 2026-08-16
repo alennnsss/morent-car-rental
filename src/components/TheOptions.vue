@@ -34,7 +34,7 @@
                 </div>    
             </div>     
         </div>
-        <button :disabled="!radio" @click="swapCities" class="inverse-button">
+        <button :disabled="!radio" @click="swapCities" class="inverse-button" v-if="route.name !== 'admin'">
             <img class="inverse-image" src="../assets/images/inverse.png" alt="inverse">
         </button>
         <div class="option-box">
@@ -80,9 +80,10 @@ import { CascadeSelect } from 'primevue';
 import DatePicker from 'primevue/datepicker';
 import Checkbox from 'primevue/checkbox';
 import { useBookStore } from '../stores/useBookStore';
-
+import { useRoute } from 'vue-router';
 const bookStore = useBookStore()
 const radio = ref(false);
+const route = useRoute()
 
 const countries = ref([
     {

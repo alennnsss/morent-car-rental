@@ -25,8 +25,8 @@
                     </span>
                 </div>
                 <div class="confirmation-closing">
-                    <router-link>
-                        <button @click="submit">{{ $t('rent_now') }}</button>
+                    <router-link class="button" :to="`/admin/${carId}`">
+                        <button v-if='product' @click="submit, recentStore.addToRecent(product)">{{ $t('rent_now') }}</button>
                     </router-link>
                     <div class="safety">
                         <img width="32px" height="32px" src="../../assets/images/safety.png" alt="safety icon">
@@ -49,6 +49,18 @@ import { helpers, required, sameAs  } from '@vuelidate/validators';
 import { useDataStore } from '../../stores/useDataStore';
 import Checkbox from 'primevue/checkbox';
 import RentalSummary from '../RentalSummary.vue';
+import { useRoute } from 'vue-router';
+import { useRecentStore } from '../../stores/useRecentStore.js';
+import { db } from '../../api/firebase.js';
+import { query, getDocs, where, collection } from 'firebase/firestore';
+import { ref,onMounted } from 'vue';
+
+const isLoading = ref(false);
+const isError = ref(false);
+const product = ref(null)
+const recentStore = useRecentStore()
+const route = useRoute();
+const carId = route.params.id
 const dataStore = useDataStore()
 const rules = {
     send_emails:{
@@ -58,7 +70,39 @@ const rules = {
         sameAs: helpers.withMessage('You need to agree with our policies', sameAs(true))
     }
 }
+const loadCar = async () => {
+    isError.value = false
+    isLoading.value = true
 
+    try {
+        const carId = route.params.id
+
+        const q = query(
+            collection(db, 'cars'),
+            where('id', '==', carId)
+        )
+        const response = await getDocs(q)
+
+        if (response.empty) {
+            isError.value = true
+            return
+        }
+        const car = response.docs[0]
+
+        product.value = {
+            id: car.data().id,
+            ...car.data()
+        }
+    } catch (error) {
+        console.error('Error:', error)
+        isError.value = true
+    } finally {
+        isLoading.value = false
+    }
+}
+onMounted(() => {
+  loadCar()
+})
 const v$ = useVuelidate(rules, dataStore.profileData)
 const submit = async () => {
     const isValid = await v$.value.$validate()
@@ -72,13 +116,17 @@ const submit = async () => {
 
 <style scoped>
     .confirmation-block {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 32px;
     }
     .confirmation {
         display: flex;
         flex-direction: column;
         gap: 32px;
+        background-color: var(--white-color);
+        padding: 24px;
+        border-radius: 10px;
     }
     .confirmation-intro {
         display: flex;
@@ -122,7 +170,7 @@ const submit = async () => {
     button {
         background-color: #3563E9;
         border-radius: 10px;
-        max-width: 140px;
+        width: 140px;
         height: 56px;
         color: white;
         border: none;
@@ -140,5 +188,9 @@ const submit = async () => {
     .error-msg {
         color: red;
         font-size: 16px;
+    }
+    .button {
+        max-width: 140px;
+        height: 56px;
     }
 </style>

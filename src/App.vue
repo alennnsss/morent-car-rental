@@ -15,7 +15,7 @@ const route = useRoute()
   <cookies-banner />
   <scroll-top-button />
   <the-toast />
-  <the-footer v-if="route.name!== 'admin'" />
+  <the-footer v-if="route.name !== 'admin'" />
 </template>
 <style>
   .container {

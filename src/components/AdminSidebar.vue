@@ -72,15 +72,14 @@
     .admin-sidebar {
         display: flex;
         flex-direction: column;
-        width: 25%;
-        padding: 36px 16px 48px 16px;
+        width: 20%;
+        padding: 16px;
         gap: 44px;
     }
     .sidebar-item {
         display: flex;
         flex-direction: column;
         gap: 28px;
-        margin-left: 32px;
     }
     span {
         font-weight: 600;
@@ -114,7 +113,6 @@
         color: white;
         height: 56px;
         border-radius: 10px;
-        padding: 18px;
         width: 100%;
     }
 
@@ -125,6 +123,7 @@
         height: 20px;
         background: url('../assets/images/dashboard.png') center / contain no-repeat;
         margin-right: 12px;
+        margin-left: 18px;
     }
     .icon {
         padding: 18px;

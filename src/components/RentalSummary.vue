@@ -138,14 +138,13 @@ onMounted(() => {
         background-color: #3563E9;
         border-radius: 8px;
         height: 108px;
-        width: 30%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     .rental-image img {
         width: 116px;
-        height: 36px;
+        height: 106px;
     }
     .rental {
         display: flex;

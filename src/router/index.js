@@ -26,7 +26,7 @@ const routes = [
         component: CheckoutView
     },
     {
-        path: '/admin',
+        path: '/admin/:id',
         name: 'admin',
         component: AdminView,
     }

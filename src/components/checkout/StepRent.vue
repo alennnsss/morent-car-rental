@@ -12,8 +12,7 @@
         <div class="options">
             <TheOptions />
         </div>
-        <RentalSummary />
-    </div>
+    </div>      
 </template>
 
 <script setup>
@@ -26,6 +25,8 @@ import RentalSummary from '../RentalSummary.vue';
         background-color: var(--white-color);
         padding: 24px;
         border-radius: 10px;
+        
+        
     }
     h1 {
         font-size: 20px;
@@ -39,5 +40,9 @@ import RentalSummary from '../RentalSummary.vue';
     }   
     .enter-info p {
         color: #90A3BF;
+    }
+    .main {
+        display: flex;
+        gap: 30px;
     }
 </style>
