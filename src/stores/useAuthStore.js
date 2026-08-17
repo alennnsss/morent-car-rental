@@ -12,17 +12,24 @@ export const useAuthStore = defineStore('auth', () => {
 
     const isAuthenticated = computed(() => !!token.value)
     
-    const login = async() => {
+    const login = async(name, password) => {
         isLoading.value = true
         try {
             const response = await fetch('https://dummyjson.com/auth/login', {
-                username,
-                password,
-                expiresInMins: 60
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: name,
+                    password: password,
+                    expiresInMins: 60
+                })
             })
-            token.value = response.data.accessToken
-            localStorage.setItem('user_token', response.data.accessToken)
-            user.value = response.data
+            const data = await response.json()
+            token.value = data.accessToken
+            localStorage.setItem('user_token', data.accessToken)
+            user.value = data
         } catch(error) {
             isError.value = true
             console.error('Error', error.message);

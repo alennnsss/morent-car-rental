@@ -25,7 +25,7 @@
         <router-link class="navigation-box__link" to="/">
             <img class="navigation-box__svg" src="../assets/icons/settings.png" alt="heart">
         </router-link>
-        <router-link class="navigation-box__link  navigation-box__link-profile" to="/">
+        <router-link v-if="authStore.isAuthenticated !== true" class="navigation-box__link  navigation-box__link-profile" to="/login">
             <img class="navigation-box__svg" src="../assets/icons/people.png" alt="heart">
         </router-link>
         <button class="language" @click="changeLanguage">
@@ -49,7 +49,9 @@
     import { useSearchStore } from '../stores/useSearchStore';
     import { useI18n } from 'vue-i18n';
     import { useFavouriteStore } from '../stores/useFavouriteStore';
+    import { useAuthStore } from '../stores/useAuthStore';
 
+    const authStore = useAuthStore()
     const { locale } = useI18n({useScope: 'global'});
     const searchStore = useSearchStore()
     const favouriteStore = useFavouriteStore()

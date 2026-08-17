@@ -55,17 +55,35 @@
         <div class="sidebar-item">
             <nav class="nav">
                 <ul class="ul">
-                    <li class="logout icon">
-                        {{ $t('log_out') }}
-                    </li>
+                    <button @click="logout">
+                        <li class="logout icon">
+                            {{ $t('log_out') }}
+                        </li>
+                    </button>    
                 </ul>
             </nav>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/useAuthStore';
+import { useToastStore } from '../stores/useToastStore';
 
+const router = useRouter()
+const toastStore = useToastStore()
+const authStore = useAuthStore()
+const logout = () => {
+    try {
+        authStore.logout();
+        toastStore.addToast('Succesful logout', 'success');
+        router.push('/')
+    } catch(error) {
+        console.error('Error', error.message);
+        toastStore.addToast('Error', 'error')
+    }
+}
 </script>
 
 <style scoped>

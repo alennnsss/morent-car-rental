@@ -100,4 +100,7 @@ export default {
     details_rental: 'Жалға алу мәліметтері',
     top5: 'Жалға берілетін үздік 5 көлік',
     recent_transaction: 'Соңғы операциялар',
+    login: 'Кіру',
+    please_login: 'Кіру деректеріңізді енгізіңіз',
+    password: 'Құпия сөз',
 }

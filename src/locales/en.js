@@ -104,5 +104,7 @@ export default {
     details_rental: 'Details Rental',
     top5: 'Top 5 Car Rental',
     recent_transaction: 'Recent Transaction',
-    
+    login: 'Login',
+    please_login: 'Please enter your login info',
+    password: 'Password',
 }   

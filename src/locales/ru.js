@@ -100,4 +100,7 @@ export default {
     details_rental: 'Детали аренды',
     top5: 'Топ-5 автомобилей для аренды',
     recent_transaction: 'Последние операции',
+    login: 'Логин',
+    please_login: 'Пожалуйста, введите свои данные для входа',
+    password: 'Пароль',
 }    

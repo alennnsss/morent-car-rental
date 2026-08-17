@@ -20,6 +20,10 @@ const toastStore = useToastStore()
         background-color: rgb(2, 159, 2);
         color: white;
     }    
+    .toast-item.error {
+        background-color: red;
+        color: rgb(255, 254, 254);
+    }
     .toast-container {
         display: flex;
         justify-content: space-between;
