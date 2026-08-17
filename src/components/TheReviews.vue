@@ -2,14 +2,14 @@
 import { getDocs, query, collection, limit } from 'firebase/firestore';
 import { ref, onMounted } from 'vue';
 import { db } from '../api/firebase';
-import { useToastStore } from '../stores/useToastStore';
 import StarRating from './StarRating.vue';
+import { useToast } from 'primevue/usetoast';
 
+const toast = useToast()
 const limitPerReview = ref(2);
 const reviews = ref([])
 const isLoading = ref(false);
 const isError = ref(false);
-const toastStore = useToastStore();
 
 const fetchReviews = async() => {
     try {
@@ -22,7 +22,12 @@ const fetchReviews = async() => {
         }))
     } catch(error) {
         console.error('Error', error.message)
-        toastStore.addToast('Error in reviews', 'error')
+        toast.add({
+            severity: 'error',
+            summary: 'Error in reviews',
+            detail: 'Unfortunately, there is a mistake in downloading reviews',
+            life: 3000
+        })
         isError.value = true
     } finally {
         isLoading.value = false

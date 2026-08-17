@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "../stores/useAuthStore.js";
-import { useToastStore } from "../stores/useToastStore.js";
+import { useToast } from "primevue/usetoast";
 import HomeView from "../views/HomeView.vue";
 import CatalogView from "../views/CatalogView.vue";
 import DetailView from '../views/DetailView.vue';
@@ -51,9 +51,14 @@ const router = createRouter({
 
 router.beforeEach((to,from, next) => {
     const authStore = useAuthStore()
-    const toastStore = useToastStore()
+    const toast = useToast()
     if(to.meta.requiresAuth && !authStore.isAuthenticated) {
-        toastStore.addToast('Login requires', 'error')
+        toast.add({
+            severity: 'info',
+            summary: 'Login',
+            detail: 'You need to login before using our app',
+            life: 3000
+        })
         next({ name: 'login' })
     } else if(to.path === '/login' && authStore.isAuthenticated) {
         next({ name: 'admin' })

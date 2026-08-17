@@ -264,10 +264,11 @@ import { db } from '../api/firebase';
 import CarsSkeleton from '../components/CarsSkeleton.vue';
 import { useFavouriteStore } from '../stores/useFavouriteStore.js';
 import StarRating from '../components/StarRating.vue';
-import { useToastStore } from '../stores/useToastStore.js';
+import { useToast } from 'primevue/usetoast';
 import TheReviews from '../components/TheReviews.vue';
 import Cars from '../components/Cars.vue';
-const toastStore = useToastStore()
+
+const toast = useToast()
 const favoriteStore = useFavouriteStore()
 const route = useRoute();
 const router = useRouter();
@@ -303,6 +304,12 @@ const loadCar = async () => {
     } catch (error) {
         console.error('Error:', error)
         isError.value = true
+        toast.add({
+            severity: 'error',
+            summary: 'Error in cars',
+            detail: 'Unfortunately, there is a mistake in downloading cars',
+            life: 3000
+        })
     } finally {
         isLoading.value = false
     }

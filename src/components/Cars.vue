@@ -3,16 +3,16 @@ import { ref, watch, computed } from 'vue'
 import { db } from '../api/firebase.js'
 import { collection, getDocs, limit, query } from 'firebase/firestore'
 import { useFavouriteStore } from '../stores/useFavouriteStore.js'
-import { useToastStore } from '../stores/useToastStore.js'
 import { useSearchStore } from '../stores/useSearchStore.js'
 import CarsSkeleton from './CarsSkeleton.vue'
 import BaseLoader from './BaseLoader.vue'
 import { useFilterStore } from '../stores/useFilterStore.js'
 import { useRoute } from 'vue-router';
+import { useToast } from 'primevue/usetoast'
 
 const route = useRoute()
-const toastStore = useToastStore()
 const filterStore = useFilterStore()
+const toast = useToast()
 const searchStore = useSearchStore()
 const favoriteStore = useFavouriteStore()
 const isLoading = ref(false)
@@ -34,7 +34,12 @@ const fetchCars = async () => {
         }))
     } catch (e) {
         console.error('Error', e.message)
-        toastStore.addToast('Error in depolying cars', 'error')
+        toast.add({
+            severity: 'error',
+            summary: 'Error in loading',
+            detail: 'Mistake in downloading cars',
+            life: 3000
+        })
     } finally {
         isLoading.value = false
     }
@@ -105,8 +110,7 @@ watch(
                 <button
                     v-if="favoriteStore.favorites.includes(car.id)"
                     @click="
-                        (favoriteStore.toggleFavorite(car.id),
-                        toastStore.addToast())
+                        (favoriteStore.toggleFavorite(car.id))
                     "
                     class="heart-button"
                 >

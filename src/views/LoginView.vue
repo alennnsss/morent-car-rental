@@ -11,7 +11,7 @@
                 </label>
                 <input type="text" id="name" v-model="loginData.name" @blur="v$.name.$touch()">
                 <span v-if="v$.name.$error" class="error-msg">
-                    {{ v$.$errors[0].$message }}
+                    {{ v$.name.$errors[0].$message }}
                 </span>    
             </div>
             <div class="input-box"> 
@@ -20,26 +20,29 @@
                 </label>
                 <input v-model="loginData.password" @blur="v$.password.$touch()" :type="showPassword ? 'text' : 'password'" name="pass">
                 <span v-if="v$.password.$error" class="error-msg">
-                    {{ v$.$errors[0].$message }}
+                    {{ v$.password.$errors[0].$message }}
                 </span>    
                 <button type="button" class="toggle-btn" @click="togglePassword">{{ showPassword ? 'Hide': 'Show' }}</button>
             </div>    
         </div>
-        <button type="submit">Login</button>
+        <Button type="submit" severity="success" variant="outlined">
+            Login
+        </Button>
     </form>
 </template>
 
 <script setup>
 import { useAuthStore } from '../stores/useAuthStore';
-import { useToastStore } from '../stores/useToastStore';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required, minLength } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
 import { ref, reactive } from 'vue';
+import { useToast } from 'primevue/usetoast';
+import Button from 'primevue/button'
 
+const toast = useToast()
 const showPassword = ref(false)
 const router = useRouter()
-const toastStore = useToastStore()
 const authStore = useAuthStore()
 
 const loginData = reactive({
@@ -64,11 +67,22 @@ const submitForm = async() => {
 
     try {
         await authStore.login(loginData.name, loginData.password);
-        toastStore.addToast('Succesful login', 'success');
+        toast.add({
+            severity: 'success',
+            summary: 'Successfully completed',
+            detail: 'Login completed successfully',
+            life: 3000
+        })
         router.push('/')
+        
+
     } catch(error) {
-        console.error('Error', error.message);
-        toastStore.addToast('Invalid password or name', 'error')
+        toast.add({
+            severity: 'error',
+            summary: 'Error in Login',
+            detail: 'Invalid password or name',
+            life: 3000,
+        })
         loginData.password = '';
         v$.value.$reset()
     }
@@ -76,6 +90,7 @@ const submitForm = async() => {
 const togglePassword = () => {
     showPassword.value = !showPassword.value
 }
+
 </script>
 
 <style scoped>

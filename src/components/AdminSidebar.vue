@@ -69,15 +69,19 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/useAuthStore';
-import { useToastStore } from '../stores/useToastStore';
+import { useToast } from 'primevue/usetoast';
 
+const toast = useToast()
 const router = useRouter()
-const toastStore = useToastStore()
 const authStore = useAuthStore()
 const logout = () => {
     try {
         authStore.logout();
-        toastStore.addToast('Succesful logout', 'success');
+        toast.add({
+            severity: 'success',
+            summary: 'Successful logout',
+            detail: 'Successfully logouted'
+        })
         router.push('/')
     } catch(error) {
         console.error('Error', error.message);

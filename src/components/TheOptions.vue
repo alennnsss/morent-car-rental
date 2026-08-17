@@ -65,7 +65,7 @@
                     </label>
                     <DatePicker v-model="bookStore.formData.timeDrop" :disabled="!radio" showIcon fluid iconDisplay="input" timeOnly inputId="templatedisplay">
                         <template>
-                            <Clock />
+                            <i class="pi pi-clock"></i>                            
                         </template>
                     </DatePicker>
             </div>     

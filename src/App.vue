@@ -1,8 +1,8 @@
 <script setup>
-import TheToast from './components/TheToast.vue';
 import CookiesBanner from './components/CookiesBanner.vue';
 import ScrollTopButton from './components/ScrollTopButton.vue';
 import TheHeader from './components/TheHeader.vue';
+import Toast from 'primevue/toast'
 import TheFooter from './components/TheFooter.vue';
 import { useRoute } from 'vue-router';
 
@@ -14,7 +14,7 @@ const route = useRoute()
   <router-view />
   <cookies-banner />
   <scroll-top-button />
-  <the-toast />
+  <toast />
   <the-footer v-if="route.name !== 'admin'" />
 </template>
 <style>
