@@ -9,21 +9,10 @@
     <div class="detail" v-else-if="product">
         <main class="main">
             <div class="car-box">
-                <div class="car-box-image">
-                    <div class="sport-car">
-                        <div class="sport-car__text">
-                            <h1>
-                                {{ $t('best_design') }}
-                            </h1>
-                            <p>
-                                {{ $t('safety_comfort') }}
-                            </p>
-                        </div>    
-                        <img class="car-image" :src="product.image" :alt="product.title">
-                    </div>
-                </div>
+                <TheCarousel :car-image="product.image"></TheCarousel>
                 <div class="car-box-info">
                     <div class="heart-box">
+                        
                         <div class="star">
                             <h1 class="car-name">
                                 {{ product.name }}
@@ -148,7 +137,7 @@
     padding: 24px;
     border-radius: 10px;
     background-color: var(--button-dark-color);
-    height: 360px;
+    height: 460px;
 }
 .sport-car__text {
     display: flex;
@@ -267,6 +256,7 @@ import StarRating from '../components/StarRating.vue';
 import { useToast } from 'primevue/usetoast';
 import TheReviews from '../components/TheReviews.vue';
 import Cars from '../components/Cars.vue';
+import TheCarousel from '../components/TheCarousel.vue';
 
 const toast = useToast()
 const favoriteStore = useFavouriteStore()

@@ -476,11 +476,15 @@ const formatTime = (date) => {
     .border-tran {
         border-bottom: 1px solid #C3D4E966;
     }
+    
     @media (max-width: 1100px) {
         .chart-box {
             flex-direction: column;
         }
-
+        main {
+            display: grid;
+            gap: 20px;
+        }
         .legend {
             width: 100%;
         }

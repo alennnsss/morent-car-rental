@@ -13,7 +13,7 @@ export const useDataStore = defineStore('data', () => {
         expDate: savedData.expDate || '',
         cardHolder: savedData.cardHolder || '',
         cvc: savedData.cvc || '',
-        town: savedData.town || '',
+        city: savedData.city || '',
         terms_right: false,
         send_emails: true,
     })

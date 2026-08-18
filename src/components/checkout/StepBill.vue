@@ -69,7 +69,7 @@ const v$ = useVuelidate(rules, dataStore.profileData)
                     </label>
                     <label for="location" :class="{ 'has-error': v$.city.$error }">
                         {{ $t('town_city') }}
-                        <input @blur="v$.city.$touch()" v-model="dataStore.profileData.town" type="text" id="location" :placeholder="$t('town_city')">
+                        <input @blur="v$.city.$touch()" v-model="dataStore.profileData.city" type="text" id="location" :placeholder="$t('town_city')">
                         <span class="error-msg" v-if="v$.city.$error">
                             {{ v$.city.$errors[0].$message }}
                         </span>
@@ -124,7 +124,7 @@ const v$ = useVuelidate(rules, dataStore.profileData)
       background-color: var(--white-color);
       padding: 24px;
       border-radius: 10px;
-      height: 336px;
+      height: 600px;
     }
     .input-container {
         display: flex;
@@ -139,5 +139,14 @@ const v$ = useVuelidate(rules, dataStore.profileData)
     .error-msg {
         color: red;
         font-size: 12px;
+    }
+    @media screen and (max-width: 380px) {
+        .input-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .box {
+            padding:16px;
+        }
     }
 </style>

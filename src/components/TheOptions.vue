@@ -7,7 +7,7 @@
                     <h2>{{ $t('pick_up')}}</h2>
                 </label>
             </div>
-            <div class="select-container">
+            <div class="select-container" :class="specialClass">
                 <div class="selection-box">
                     <label for="pickup-locations">
                         <h2>{{ $t('locations')}}</h2>
@@ -35,7 +35,7 @@
             </div>     
         </div>
         <button :disabled="!radio" @click="swapCities" class="inverse-button" v-if="route.name !== 'admin'">
-            <img class="inverse-image" src="../assets/images/inverse.png" alt="inverse">
+            <img v-if="route.params.name!== 'checkout'" class="inverse-image" src="../assets/images/inverse.png" alt="inverse">
         </button>
         <div class="option-box">
             <div class="checkbox">
@@ -84,6 +84,11 @@ import { useRoute } from 'vue-router';
 const bookStore = useBookStore()
 const radio = ref(false);
 const route = useRoute()
+defineProps({
+    specialClass: {
+        customClass: String,
+    }
+})
 
 const countries = ref([
     {
@@ -193,27 +198,38 @@ const swapCities = () => {
     input {
         max-width: 40px;
     }
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1200px) {
         .box {
             width: 100%;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            padding: 20px 16px;
             gap: 32px;
+        }
+        .selection-box {
+            width: 200px;
         }
         .inverse-button {
             position: absolute;
             transform: translate(-50%, -50%);
             z-index: 20;
             left: 50%;
-            top: 45%;
+            top: 40%;
         }
         .select-container {
             width: 100%;
             display: flex;
+        }
+        .option-box {
+            display: flex;
             flex-direction: column;
-            gap: 16px;
+            padding: 16px;
+            width: 300px;
+            margin-left: -30px;
+        }
+        .border {
+            border-bottom: 1px solid #C3D4E966;
+            border-right: none;
         }
     }
 </style>

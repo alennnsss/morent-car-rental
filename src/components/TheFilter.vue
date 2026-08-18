@@ -35,11 +35,8 @@
 </template>
 
 <script setup>
-import TheOptions from '../components/TheOptions.vue';
-import Cars from '../components/Cars.vue';
 import { ref } from 'vue';
 import { useFilterStore } from '../stores/useFilterStore.js';
-import { useSearchStore } from '../stores/useSearchStore.js';
 
 const filterStore = useFilterStore()
 const types = ref([
@@ -59,7 +56,7 @@ const capacities = ref([
 <style scoped>
     
     .catalog-sidebar {
-        width: 23%;
+        width: 20%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -90,5 +87,10 @@ const capacities = ref([
     }
     h2 {
         font-weight: 600;
+    }
+    @media screen and (max-width: 768px) {
+        .catalog-sidebar {
+            display: none;
+        }
     }
 </style>

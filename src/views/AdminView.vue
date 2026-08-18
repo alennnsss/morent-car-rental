@@ -1,6 +1,6 @@
 <template>
     <div class="admin">
-        <AdminSidebar />
+        <AdminSidebar class="sidebar" />
         <AdminMain />
     </div>    
 </template>
@@ -14,5 +14,10 @@ import AdminMain from '../components/AdminMain.vue';
     .admin {
         display: flex;
 
+    }
+    @media screen and (max-width: 800px){
+        .sidebar {
+            display: none;
+        }
     }
 </style>

@@ -2,7 +2,7 @@
   <div class="catalog">
     <TheFilter class="filter"/>
     <div class="catalog-main">
-        <TheOptions />
+        <TheOptions class="options" />
         <Cars />
     </div>
   </div>
@@ -12,9 +12,6 @@
 import TheOptions from '../components/TheOptions.vue';
 import Cars from '../components/Cars.vue';
 import TheFilter from '../components/TheFilter.vue';
-import { ref } from 'vue';
-import { useFilterStore } from '../stores/useFilterStore.js';
-import { useSearchStore } from '../stores/useSearchStore.js';
 
 </script>
 
@@ -24,8 +21,17 @@ import { useSearchStore } from '../stores/useSearchStore.js';
     }
     .catalog-main {
       width: 80%;
+      background-color: var(--main-color);
     }
     .catalog {
         display: flex;
     }
+    @media screen and (max-width: 768px) {
+        .options {
+          padding: 0;
+        }
+        .catalog-main {
+          width:100%;
+        }
+    } 
 </style>

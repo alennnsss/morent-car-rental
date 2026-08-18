@@ -224,4 +224,9 @@ const logout = () => {
         background: url('../assets/images/logout.png') center / contain no-repeat;
         margin-right: 12px;
     }
+    button {
+        border: none;
+        background-color: var(--white-color);
+    }
+    
 </style>

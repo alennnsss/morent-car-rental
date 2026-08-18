@@ -129,7 +129,7 @@ onMounted(() => {
         gap: 8px;
     }
     .review-info {
-        width: 95%;
+        width: 80%;
         margin-top: 12px;
         margin-left: 70px;
     }

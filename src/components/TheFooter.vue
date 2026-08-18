@@ -175,8 +175,8 @@
             display: block;
         }
         .item1 {
-            margin-left: 235px;
-            margin-top: -144px;
+            margin-left: 200px;
+            margin-top: -190px;
             width:130px;
         }
         .footer-links {

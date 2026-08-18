@@ -209,7 +209,7 @@
             display: none;
         }
         .header-search__box {
-            width: 140%;
+            width: 120%;
         }
         .navigation-box__link-profile {
             display: flex;

@@ -10,17 +10,16 @@
             </div>
         </div>  
         <div class="options">
-            <TheOptions />
+            <TheOptions class="select-container" />
         </div>
     </div>      
 </template>
 
 <script setup>
 import TheOptions from '../TheOptions.vue';
-import RentalSummary from '../RentalSummary.vue';
 </script>
 
-<style scoped>
+<style>
     .box {
         background-color: var(--white-color);
         padding: 24px;
@@ -45,4 +44,6 @@ import RentalSummary from '../RentalSummary.vue';
         display: flex;
         gap: 30px;
     }
+    
+    
 </style>
