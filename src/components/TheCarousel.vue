@@ -162,7 +162,7 @@ const images = [
 .thumbnail {
     width: 148px;
     height: 124px;
-    min-width: 120px;
+    min-width: 80px;
     overflow: hidden;
     border-radius: 8px;
     cursor: pointer;
@@ -207,9 +207,12 @@ const images = [
 @media screen and (max-width: 380px) {
     .thumbnails {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .info {
+        display: flex;
+        gap: 0px;
     }
 }
 </style>
