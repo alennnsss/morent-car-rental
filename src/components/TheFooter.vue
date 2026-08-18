@@ -15,7 +15,7 @@
                 </div>    
             </div>
             <div class="footer-links">
-                <div class="footer-links__item">
+                <div class="footer-links__item item1">
                     <h1>
                         {{ $t('about') }}
                     </h1>
@@ -127,10 +127,8 @@
         gap: 6px;
     }
     .footer-links {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 3fr));
+        display: flex;
         gap: 60px;
-        width: 50%;
     }
     .footer-links__item {
         display: flex;
@@ -168,5 +166,21 @@
     }
     a:hover {
         color:#3563E9;
+    }
+    @media screen and (max-width: 768px) {
+        footer {
+            padding: 24px;
+        }
+        .footer {
+            display: block;
+        }
+        .item1 {
+            margin-left: 235px;
+            margin-top: -144px;
+            width:130px;
+        }
+        .footer-links {
+            display: grid;
+        }
     }
 </style>

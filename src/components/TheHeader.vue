@@ -208,16 +208,25 @@
         .navigation-box__link {
             display: none;
         }
+        .header-search__box {
+            width: 140%;
+        }
         .navigation-box__link-profile {
             display: flex;
-            gap: 30px;
+            gap: 40px;
+            top: -35px;
+        }
+        .language {
+            margin-top: -65px;
         }
         .header-logo-box {
             display: flex;
-            gap: 0;
+            flex-direction: column;
+            gap: 32px;
         }
         .header {
             padding: 24px;
+            gap: 30px;
         }
     }
     @media screen and (max-width: 368px) {

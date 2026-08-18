@@ -134,35 +134,37 @@ watch(
                 </button>
             </div>
             <span class="car-card__span">{{ car.type }}</span>
-            <img :src="car.image" :alt="car.name" class="car-card__img" />
-            <div class="icons-container">
-                <div class="icons-container__item">
-                    <img
-                        class="icon"
-                        src="../assets/icons/fuel.png"
-                        alt="fuel"
-                    />
-                    <span class="icon car-card__span">{{
-                        car.fuelCapacity
-                    }}</span>
+            <div class="car-modal">
+                <img :src="car.image" :alt="car.name" class="car-card__img" />
+                <div class="icons-container">
+                    <div class="icons-container__item">
+                        <img
+                            class="icon"
+                            src="../assets/icons/fuel.png"
+                            alt="fuel"
+                        />
+                        <span class="icon car-card__span">{{
+                            car.fuelCapacity
+                        }}</span>
+                    </div>
+                    <div class="icons-container__item">
+                        <img
+                            class="icon"
+                            src="../assets/icons/manual.png"
+                            alt="manual"
+                        />
+                        <span class="icon car-card__span">{{ $t('manual') }}</span>
+                    </div>
+                    <div class="icons-container__item">
+                        <img
+                            class="icon"
+                            src="../assets/icons/people.png"
+                            alt="people"
+                        />
+                        <span class="icon car-card__span">{{ car.capacity }}</span>
+                    </div>
                 </div>
-                <div class="icons-container__item">
-                    <img
-                        class="icon"
-                        src="../assets/icons/manual.png"
-                        alt="manual"
-                    />
-                    <span class="icon car-card__span">{{ $t('manual') }}</span>
-                </div>
-                <div class="icons-container__item">
-                    <img
-                        class="icon"
-                        src="../assets/icons/people.png"
-                        alt="people"
-                    />
-                    <span class="icon car-card__span">{{ car.capacity }}</span>
-                </div>
-            </div>
+            </div>    
             <div class="car-card-rental-info">
                 <div class="car-card-rental-info__box">
                     <p class="price">${{ car.pricePerDay }}.00/</p>
@@ -239,7 +241,7 @@ watch(
     background-color: var(--white-color);
     border-radius: 10px;
     padding: 20px;
-    height: 100%;
+    height: 388px;
 }
 .heart-div {
     display: flex;
@@ -259,8 +261,7 @@ watch(
 }
 .car-card__img {
     width: 100%;
-    max-width: 100%;
-    height: 100%;
+    height: 190px;
     object-fit: contain;
     box-sizing: border-box;
     padding: 12px 16px;
@@ -271,8 +272,8 @@ watch(
 .car-card-rental-info {
     display: flex;
     height: 44px;
-    margin-top: 24px;
-    gap: 12px;
+    margin-top: auto;
+    justify-content: space-between;
 }
 .car-card-rental-info__box {
     display: flex;
@@ -355,5 +356,40 @@ watch(
 }
 a {
     text-decoration: none;
+}
+.car-modal {
+    height: 250px;
+}
+@media screen and (max-width:380px) {
+    .icons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .car-card {
+        width: 100%;
+        height: 240px;
+    }
+    .cars-grid {
+        padding: 0;
+    }
+    .car-modal {
+        display: flex;
+        gap: 10px;
+    }
+    .car-card__img {
+        width: 46%;
+        margin-left: -25px;
+        margin-top: -35px;
+    }
+    .car-card-rental-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: -66px;
+    }
+    .rent-now__button {
+        width: 130px;
+        height: 36px;
+    }
 }
 </style>

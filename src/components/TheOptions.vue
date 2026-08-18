@@ -137,11 +137,14 @@ const swapCities = () => {
         padding: 32px 26px;;
         justify-content: space-around;
         position: relative;
+        box-sizing: border-box;
+        gap: 24px;
     }
     .option-box {
         background-color: var(--white-color);
         border-radius: 10px;
         padding: 20px;
+        flex: 1;
     }
     .inverse-button {
         border-radius: 10px;
@@ -164,7 +167,6 @@ const swapCities = () => {
         display: flex;
         width: 100%;
         justify-content: space-around;
-        flex-wrap: wrap;
         gap: 16px;
     }
     .selection-box {
@@ -191,5 +193,27 @@ const swapCities = () => {
     input {
         max-width: 40px;
     }
-    
+    @media screen and (max-width: 800px) {
+        .box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 20px 16px;
+            gap: 32px;
+        }
+        .inverse-button {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            left: 50%;
+            top: 45%;
+        }
+        .select-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
 </style>

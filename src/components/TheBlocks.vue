@@ -142,4 +142,17 @@
     .koe {
         bottom: -7px;
     }
+    @media screen and (max-width: 380px) {
+        .blocks-container {
+            display: flex;
+            padding: 0;
+        }
+        .box2 {
+            display: none;
+        }
+        .box1 {
+            width: 100%;
+            height: 232px;
+        }
+    }
 </style>
