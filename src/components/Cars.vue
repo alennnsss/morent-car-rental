@@ -28,6 +28,7 @@ const fetchCars = async () => {
             limit(limitPerPage.value)
         )
         const querySnapshot = await getDocs(queryParams)
+        
         cars.value = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data()
@@ -48,9 +49,7 @@ const filteredCars = computed(() => {
     let result = cars.value
     if (searchStore.searchQuery.trim()) {
         result = result.filter((car) =>
-            car.name
-                .toLowerCase()
-                .includes(searchStore.searchQuery.toLowerCase().trim())
+            car.name.toLowerCase().includes(searchStore.searchQuery.toLowerCase().trim())
         )
     }
     if (filterStore.selectedCapacity.length > 0) {
@@ -74,9 +73,7 @@ const reloadPage = () => {
 }
 const showMore = () => (limitPerPage.value += 4)
 const showAll = () => (limitPerPage.value += cars.value.length)
-watch(
-    limitPerPage,
-    () => {
+watch(limitPerPage,() => {
         fetchCars()
     },
     { immediate: true }

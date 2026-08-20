@@ -10,8 +10,10 @@
 
 <script setup>
 import { ref,onMounted, onUnmounted } from 'vue';
+
 const scrollY = ref();
 const isButton = ref(false)
+
 const scrollTopButton = () => {
     scrollY.value = window.scrollY
     if(scrollY.value > 300) {

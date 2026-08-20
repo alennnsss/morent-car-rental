@@ -85,7 +85,11 @@ const logout = () => {
         router.push('/')
     } catch(error) {
         console.error('Error', error.message);
-        toastStore.addToast('Error', 'error')
+        toastStore.add({
+            severity: 'error',
+            summary: 'Error in logout',
+            detail: 'Something went wrong!'
+        })
     }
 }
 </script>
@@ -228,5 +232,5 @@ const logout = () => {
         border: none;
         background-color: var(--white-color);
     }
-    
+
 </style>

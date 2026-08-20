@@ -24,7 +24,7 @@
                                 </p>
                             </div>    
                         </div>    
-                        <button v-if="favoriteStore.favorites.includes(product.id)" @click="favoriteStore.toggleFavorite(product.id), toastStore.addToast()" class="heart-button">
+                        <button v-if="favoriteStore.favorites.includes(product.id)" @click="favoriteStore.toggleFavorite(product.id)" class="heart-button">
                             <img class="heart-svg" src="../assets/icons/heart-red.png" alt="heart">
                         </button>
                         <button @click="favoriteStore.toggleFavorite(product.id)" :disabled="isButtonLoading" v-else class="heart-button">
@@ -242,11 +242,11 @@ span {
 button {
     cursor: pointer;
 }
+
 </style>
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { getDocs, where, query, collection } from 'firebase/firestore';
 import { db } from '../api/firebase';
@@ -261,7 +261,6 @@ import TheCarousel from '../components/TheCarousel.vue';
 const toast = useToast()
 const favoriteStore = useFavouriteStore()
 const route = useRoute();
-const router = useRouter();
 const isLoading = ref(false);
 const isError = ref(false);
 const product = ref(null)
