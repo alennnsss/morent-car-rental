@@ -18,7 +18,11 @@ export const useBookStore = defineStore('book',() => {
     watch(formData, (newValue) => {
         localStorage.setItem('user_data', JSON.stringify(newValue))
     })
+
+    
     return {
         formData
     }
+
+
 })
