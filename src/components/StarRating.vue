@@ -23,7 +23,7 @@ const props = defineProps({
     }
 })
 const ratingWidth = computed(() => {
-    const safeRating = Math.min(Math.max(props.rating), props.maxStars)
+    const safeRating = Math.min(Math.max(props.rating, 0), props.maxStars)
     return (safeRating / props.maxStars) * 100 + '%'
 })
 </script>

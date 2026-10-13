@@ -85,7 +85,7 @@ const logout = () => {
         router.push('/')
     } catch(error) {
         console.error('Error', error.message);
-        toastStore.add({
+        toast.add({
             severity: 'error',
             summary: 'Error in logout',
             detail: 'Something went wrong!'

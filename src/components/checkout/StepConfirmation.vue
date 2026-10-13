@@ -25,9 +25,9 @@
                     </span>
                 </div>
                 <div class="confirmation-closing">
-                    <router-link class="button" :to="`/admin/${carId}`">
-                        <button v-if='product' @click="submit, recentStore.addToRecent(product)">{{ $t('rent_now') }}</button>
-                    </router-link>
+                    <div class="button">
+                        <button v-if='product' @click="submit">{{ $t('rent_now') }}</button>
+                    </div>
                     <div class="safety">
                         <img width="32px" height="32px" src="../../assets/images/safety.png" alt="safety icon">
                         <div class="all_data">
@@ -49,7 +49,7 @@ import { helpers, required, sameAs  } from '@vuelidate/validators';
 import { useDataStore } from '../../stores/useDataStore';
 import Checkbox from 'primevue/checkbox';
 import RentalSummary from '../RentalSummary.vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useRecentStore } from '../../stores/useRecentStore.js';
 import { db } from '../../api/firebase.js';
 import { query, getDocs, where, collection } from 'firebase/firestore';
@@ -60,6 +60,7 @@ const isError = ref(false);
 const product = ref(null)
 const recentStore = useRecentStore()
 const route = useRoute();
+const router = useRouter();
 const carId = route.params.id
 const dataStore = useDataStore()
 const rules = {
@@ -110,7 +111,8 @@ const submit = async () => {
     if (!isValid) {
         return
     }
-
+    recentStore.addToRecent(product.value)
+    router.push(`/admin/${carId}`)
 }
 </script>
 

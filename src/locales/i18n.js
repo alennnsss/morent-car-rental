@@ -4,7 +4,7 @@ import ru from './ru';
 import kz from "./kz";
 const i18n = createI18n({
     legacy: false,
-    locale: localStorage.getItem('language'),
+    locale: localStorage.getItem('language') || 'en',
     fallbackLocale: 'ru',
     
     messages: {

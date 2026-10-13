@@ -23,6 +23,9 @@ import StepRent from '../components/checkout/StepRent.vue';
 import StepConfirmation from '../components/checkout/StepConfirmation.vue';
 import { shallowRef } from 'vue';
 import { ref, computed } from 'vue';
+import { useVuelidate } from '@vuelidate/core';
+
+const v$ = useVuelidate();
 
 const currentStepIndex = ref(0);
 
@@ -34,7 +37,9 @@ const steps = shallowRef([
 ]);
 
 const currentComponent = computed(() => steps.value[currentStepIndex.value].component);
-const nextStep = () => {
+const nextStep = async () => {
+    const isValid = await v$.value.$validate()
+    if(!isValid) return
     if(currentStepIndex.value < steps.value.length -1) {
         currentStepIndex.value++;
     }

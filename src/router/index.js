@@ -61,7 +61,7 @@ router.beforeEach((to,from, next) => {
         })
         next({ name: 'login' })
     } else if(to.path === '/login' && authStore.isAuthenticated) {
-        next({ name: 'admin' })
+        next({ name: 'home' })
     } else {
         next()
     }

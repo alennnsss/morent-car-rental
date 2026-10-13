@@ -247,7 +247,7 @@ button {
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { ref, watch } from 'vue';
 import { getDocs, where, query, collection } from 'firebase/firestore';
 import { db } from '../api/firebase';
 import CarsSkeleton from '../components/CarsSkeleton.vue';
@@ -303,9 +303,9 @@ const loadCar = async () => {
         isLoading.value = false
     }
 }
-onMounted(() => {
-  loadCar()
-})
+watch(() => route.params.id, (id) => {
+  if (id) loadCar()
+}, { immediate: true })
 </script>
 
 <style>
