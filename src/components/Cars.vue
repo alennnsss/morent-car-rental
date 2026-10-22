@@ -85,10 +85,10 @@ watch(limitPerPage,() => {
         <h2 class="cars-preview__title">
             {{ $t('popular_cars') }}
         </h2>
-        <router-link v-if="route.path !== '/catalog'" to="/catalog">
+        <router-link v-if="route.path !== '/catalog'" to="/catalog" class="cars-preview__link">
             View All
         </router-link>
-        <button v-else @click="showAll">
+        <button v-else @click="showAll" class="cars-preview__link">
             View All
         </button>
     </div>
@@ -140,7 +140,7 @@ watch(limitPerPage,() => {
                             src="../assets/icons/fuel.png"
                             alt="fuel"
                         />
-                        <span class="icon car-card__span">{{
+                        <span class="car-card__span">{{
                             car.fuelCapacity
                         }}</span>
                     </div>
@@ -150,7 +150,7 @@ watch(limitPerPage,() => {
                             src="../assets/icons/manual.png"
                             alt="manual"
                         />
-                        <span class="icon car-card__span">{{ $t('manual') }}</span>
+                        <span class="car-card__span">{{ $t('manual') }}</span>
                     </div>
                     <div class="icons-container__item">
                         <img
@@ -158,7 +158,7 @@ watch(limitPerPage,() => {
                             src="../assets/icons/people.png"
                             alt="people"
                         />
-                        <span class="icon car-card__span">{{ car.capacity }}</span>
+                        <span class="car-card__span">{{ car.capacity }}</span>
                     </div>
                 </div>
             </div>    
@@ -188,7 +188,7 @@ watch(limitPerPage,() => {
         <button class="show-more" @click="showMore">
             {{ $t('show_more') }}
         </button>
-        <h2 class="cars_number">
+        <h2 class="cars_number" v-if="!isLoading">
             {{ filteredCars.length }} {{ $t('cars_count') }}
         </h2>
     </div>
@@ -211,6 +211,7 @@ watch(limitPerPage,() => {
 .cars-preview__link {
     cursor: pointer;
     border: none;
+    font-size: 16px;
     background-color: var(--main-color);
     color: var(--button-dark-color);
 }
@@ -243,11 +244,14 @@ watch(limitPerPage,() => {
 .heart-div {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
     width: 100%;
 }
 .heart-button {
-    width: 67px;
+    width: 30px;
     height: 30px;
+    flex-shrink: 0;
     background-color: var(--white-color);
     border: none;
     cursor: pointer;
@@ -268,15 +272,15 @@ watch(limitPerPage,() => {
 }
 .car-card-rental-info {
     display: flex;
-    height: 44px;
     margin-top: auto;
     justify-content: space-between;
+    align-items: center;
+    gap: 12px;
 }
 .car-card-rental-info__box {
     display: flex;
+    align-items: baseline;
     gap: 6px;
-    width: 116px;
-    height: 44px;
 }
 .price {
     font-weight: 700;
@@ -287,7 +291,8 @@ watch(limitPerPage,() => {
     background-color: var(--button-dark-color);
     color: white;
     padding: 10px 20px;
-    height: 56px;
+    height: 44px;
+    white-space: nowrap;
     border-radius: 4px;
     border: none;
     cursor: pointer;
@@ -297,16 +302,16 @@ watch(limitPerPage,() => {
 }
 .icons-container {
     display: flex;
-    width: 90%;
-    gap: 18px;
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
 }
 .icons-container__item {
     display: flex;
-    width: 100%;
     gap: 6px;
-    justify-content: center;
     align-items: center;
     white-space: nowrap;
+    min-width: 0;
 }
 .icon {
     width: 21.5px;
@@ -325,68 +330,81 @@ watch(limitPerPage,() => {
 .show-div {
     width: 100%;
     display: flex;
+    align-items: center;
     background-color: var(--main-color);
-    padding: 64px 64px 64px;
-    justify-content: space-between;
+    padding: 64px;
+    position: relative;
+    justify-content: center;
 }
 .show-more {
     background-color: var(--button-dark-color);
-    max-width: 156px;
-    height: 44px;
     border-radius: 4px;
     color: var(--white-color);
     border: none;
     padding: 10px 20px;
-    height: 56px;
+    height: 44px;
+    white-space: nowrap;
     cursor: pointer;
-    margin: 0 auto;
 }
 .show-more:hover {
     background-color: var(--button-color);
 }
 .cars_number {
+    position: absolute;
+    right: 64px;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
     color: var(--span-color);
-    padding: 10px 0 0 10px;
 }
 a {
     text-decoration: none;
 }
 .car-modal {
-    height: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
 }
-@media screen and (max-width:380px) {
-    .icons-container {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
-    .car-card {
-        width: 100%;
-        height: 240px;
-    }
+.cars-preview__link {
+    text-decoration: none;
+    font-weight: 600;
+}
+@media screen and (max-width: 600px) {
     .cars-grid {
         padding: 0;
+        gap: 16px;
+    }
+    .cars-preview {
+        padding: 24px 0 16px;
+    }
+    .car-card {
+        height: auto;
+        padding: 16px;
     }
     .car-modal {
-        display: flex;
-        gap: 10px;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
     }
     .car-card__img {
-        width: 46%;
-        margin-left: -25px;
-        margin-top: -35px;
+        width: 55%;
+        height: 120px;
+        padding: 0;
     }
-    .car-card-rental-info {
-        display: flex;
-        justify-content: space-between;
-        margin-top: -66px;
+    .icons-container {
+        flex-direction: column;
+        align-items: flex-start;
+        width: auto;
+        gap: 12px;
     }
-    .rent-now__button {
-        width: 130px;
-        height: 36px;
+    .show-div {
+        flex-direction: column;
+        gap: 16px;
+        padding: 32px 0;
+    }
+    .cars_number {
+        position: static;
     }
 }
 </style>

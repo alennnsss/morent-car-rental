@@ -34,8 +34,9 @@ onMounted(() => {
         justify-content: space-between;
         align-items: center;
         border-radius: 8px;
-        max-width: 400px;
+        max-width: min(400px, calc(100vw - 40px));
         width: 100%;
+        gap: 16px;
         z-index: 9999;
     }
     .cookie-banner button {
@@ -45,6 +46,11 @@ onMounted(() => {
         cursor: pointer;
         border-radius: 4px;
         color: black;
+        flex-shrink: 0;
+    }
+    .cookie-banner h2 {
+        font-size: 14px;
+        font-weight: 500;
     }
     .cookie-leave-active,
     .cookie-enter-active {

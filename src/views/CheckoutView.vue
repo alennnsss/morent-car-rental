@@ -6,7 +6,7 @@
             </KeepAlive>
         </div>
         <div class="wizard-actions">
-            <button @click="prevStep" >
+            <button @click="prevStep" :style="{ visibility: currentStepIndex > 0 ? 'visible' : 'hidden' }">
                 <img src="../assets/icons/back.png" alt="back">
             </button>
             <button @click="nextStep" v-if="currentStepIndex < steps.length -1">
@@ -64,9 +64,18 @@ const prevStep = () => {
         gap: 40px;
     }
     button {
-        border: none;
-        background-color: var(--main-color);
-        
+        border: 1px solid #C3D4E9;
+        border-radius: 50%;
+        background-color: var(--white-color);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    button:hover {
+        border-color: var(--button-dark-color);
     }
     img {
         width: 20px;
@@ -76,6 +85,7 @@ const prevStep = () => {
         display: flex;
         width: 100%;
         justify-content: space-between;
+        margin-top: 24px;
     }
     @media screen and (max-width: 768px) {
         .checkout-page {

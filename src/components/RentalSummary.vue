@@ -142,9 +142,14 @@ onMounted(() => {
         justify-content: center;
         align-items: center;
     }
+    .rental-image {
+        flex-shrink: 0;
+        width: 132px;
+    }
     .rental-image img {
         width: 116px;
         height: 106px;
+        object-fit: contain;
     }
     .rental {
         display: flex;
@@ -214,12 +219,39 @@ onMounted(() => {
         display: flex;
         margin-top: 32px;
         justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+    }
+    .promo {
+        align-items: center;
+        gap: 12px;
     }
     .total-price {
         font-size: 32px;
         font-weight: 700;
     }
     @media screen and (max-width: 768px) {
+        .rental-summary {
+            padding: 16px;
+        }
+        .rental-image {
+            width: 100px;
+            height: 80px;
+        }
+        .rental-image img {
+            width: 88px;
+            height: 72px;
+        }
+        .product-title {
+            font-size: 24px;
+        }
+        .promo {
+            padding: 16px;
+            height: auto;
+        }
+        .total-price {
+            font-size: 24px;
+        }
         .rating {
             display: flex;
             flex-direction: column;

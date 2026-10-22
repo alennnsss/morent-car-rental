@@ -99,6 +99,8 @@
         border: 1px solid #C3D4E966;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        gap: 24px;
     }
     
     .header-logo-box {
@@ -121,6 +123,12 @@
         gap: 20px;
         max-width: 492px;
         width: 100%;
+        min-width: 0;
+        align-items: center;
+        transition: border-color 0.2s;
+    }
+    .header-search__box:focus-within {
+        border-color: #3563E9;
     }
     .header-search__button {
         border: none;
@@ -128,16 +136,20 @@
     .header-search__img {
         width: 24px;
         height: 24px;
+        flex-shrink: 0;
     }
     .header-search__input {
         border-radius: 70px;
         width: 100%;
         border: none;
         background: transparent;
+        min-width: 0;
+        outline: none;
     }
     .header-option__img {
         width: 24px;
         height: 24px;
+        flex-shrink: 0;
     }
     .navigation-box {
         display: flex;
@@ -180,8 +192,11 @@
     }
     .language {
         border: none;
-        background-color: white;
+        background-color: transparent;
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .translate {
         width: 1rem;
@@ -208,25 +223,25 @@
         .navigation-box__link {
             display: none;
         }
-        .header-search__box {
-            width: 120%;
-        }
         .navigation-box__link-profile {
             display: flex;
-            gap: 40px;
-            top: -35px;
-        }
-        .language {
-            margin-top: -65px;
         }
         .header-logo-box {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
+            display: contents;
         }
         .header {
             padding: 24px;
-            gap: 30px;
+            flex-wrap: wrap;
+            gap: 24px 16px;
+        }
+        .navigation-box {
+            order: 2;
+            margin-left: auto;
+        }
+        .header-search__box {
+            order: 3;
+            max-width: none;
+            flex-basis: 100%;
         }
     }
     @media screen and (max-width: 368px) {

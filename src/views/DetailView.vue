@@ -1,10 +1,10 @@
 <template>
-    <div v-if="isLoading">
-      <cars-skeleton v-for="value in 1" :key="value.id"/>
+    <div v-if="isLoading" class="main">
+      <cars-skeleton />
     </div>
-    <div v-else-if="isError">
+    <div v-else-if="isError" class="error-box">
       <h1>Unfortunately, cars not found!</h1>
-      <button @click="loadCar">Reload Page</button>
+      <button class="rent" @click="loadCar">Reload Page</button>
     </div>
     <div class="detail" v-else-if="product">
         <main class="main">
@@ -99,7 +99,16 @@
 <style scoped>
 .detail {
     display: flex;
-    
+}
+.error-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 64px 32px;
+}
+.error-box .rent {
+    max-width: 200px;
 }
 .filter {
     width: 30%;
@@ -180,10 +189,12 @@
 }
 .review-info {
     display: flex;
-    gap: 3px;
+    align-items: center;
+    gap: 8px;
 }
 .review-info p {
     color: #596780;
+    white-space: nowrap;
 }
 .car-desc {
     display: flex;
@@ -192,16 +203,17 @@
     line-height: 200%;
 }
 .charac {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 32px;
 }
 .charac-info {
     display: grid;
     gap: 16px;
-    white-space: nowrap;
 }
 .info {
     display: flex;
+    justify-content: space-between;
     gap: 16px;
 }
 .infop {
@@ -210,13 +222,18 @@
 .buttons-box {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: auto;
 }
 .price-box {
     display: flex;
+    align-items: baseline;
 }
 .day {
-    margin-top: 12px;
     margin-left: 6px;
+    color: var(--span-color);
 }
 .rent {
     background-color: var(--button-dark-color);
@@ -224,7 +241,11 @@
     border: none;
     height: 56px;
     color: white;
-    width: 100%;    
+    width: 100%;
+    cursor: pointer;
+}
+.rent:hover {
+    background-color: var(--button-color);
 }
 .checkout {
     width: 140px;
@@ -241,6 +262,22 @@ span {
 }
 button {
     cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+    .main {
+        padding: 16px;
+        gap: 24px;
+    }
+    .car-box-info {
+        padding: 16px;
+        gap: 24px;
+    }
+    .charac {
+        grid-template-columns: 1fr;
+    }
+    h1 {
+        font-size: 24px;
+    }
 }
 
 </style>

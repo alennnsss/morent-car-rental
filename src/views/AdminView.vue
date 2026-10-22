@@ -16,8 +16,9 @@ import AdminMain from '../components/AdminMain.vue';
 
     }
     @media screen and (max-width: 800px){
-        .sidebar {
-            display: none;
+        .admin {
+            flex-direction: column;
+            background-color: var(--main-color);
         }
     }
 </style>

@@ -210,6 +210,13 @@ const v$ = useVuelidate(rules, dataStore.profileData)
 }
 .main-container {
     width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.summary {
+    align-self: start;
 }
 .box {
     background-color: var(--white-color);
@@ -229,11 +236,19 @@ const v$ = useVuelidate(rules, dataStore.profileData)
 .visa {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 32px;
+    align-items: center;
+    gap: 12px;
+}
+.main-box {
+    margin-top: 32px;
 }
 .visa-container {
     display: flex;
+    align-items: center;
     gap: 8px;
+}
+.visa-container label {
+    cursor: pointer;
 }
 .visa-images {
     display: flex;
@@ -302,6 +317,22 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+@media screen and (max-width: 600px) {
+    .box,
+    .radio-box {
+        padding: 16px;
+    }
+    .input-item {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .input {
+        padding: 16px 20px;
+    }
+    .enter-info {
+        gap: 16px;
+    }
 }
 
 </style>

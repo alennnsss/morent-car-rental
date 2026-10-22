@@ -8,7 +8,7 @@ export default {
     pick_up: 'Pick Up',
     locations: 'Locations',
     date: 'Date',
-    time: 'TIme',
+    time: 'Time',
     drop_off: 'Drop Off',
     select_city: 'Select city',
     almaty: 'Almaty',

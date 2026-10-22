@@ -52,7 +52,7 @@
     }
     .blocks-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 2fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
         gap: 32px;
         padding: 24px;
     }
@@ -101,6 +101,7 @@
         color: white;
         border: none;
         padding: 10px 20px;
+        cursor: pointer;
     }
     .button1:hover {
         background-color: #1a2c94;
@@ -122,6 +123,7 @@
         color: white;
         border: none;
         padding: 10px 20px;
+        cursor: pointer;
     }
     .blocks-container-box2__image {
         width: 50%;
@@ -142,17 +144,19 @@
     .koe {
         bottom: -7px;
     }
-    @media screen and (max-width: 380px) {
+    @media screen and (max-width: 600px) {
         .blocks-container {
-            display: flex;
             padding: 0;
+            gap: 16px;
         }
-        .box2 {
-            display: none;
+        .blocks-container-box {
+            min-height: 300px;
         }
-        .box1 {
-            width: 100%;
-            height: 232px;
+        .blocks-container__info {
+            max-width: 100%;
+        }
+        h1 {
+            font-size: 24px;
         }
     }
 </style>

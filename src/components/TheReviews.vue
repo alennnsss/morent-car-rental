@@ -108,20 +108,26 @@ onMounted(() => {
     .review-author {
         display: flex;
         justify-content: space-between;
+        gap: 16px;
     }
     .review-rating {
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
         gap: 8px;
+        flex-shrink: 0;
     }
     .author {
         display: flex;
         gap: 16px;
+        min-width: 0;
     }
     .author-image {
         border-radius: 60px;
         width: 56px;
         height: 56px;
+        flex-shrink: 0;
+        object-fit: cover;
     }
     .author-name {
         display: flex;
@@ -151,5 +157,28 @@ onMounted(() => {
         background-color: white;
         cursor: pointer;
         color: #90A3BF;
+    }
+    button:hover {
+        color: var(--button-dark-color);
+    }
+    @media screen and (max-width: 600px) {
+        .reviews-box {
+            padding: 16px;
+            gap: 24px;
+        }
+        .review-author {
+            flex-direction: column;
+        }
+        .review-rating {
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            padding-left: 72px;
+        }
+        .review-info {
+            width: 100%;
+            margin-left: 0;
+        }
     }
 </style>

@@ -52,7 +52,7 @@
                 
             </nav>
         </div>
-        <div class="sidebar-item">
+        <div class="sidebar-item sidebar-item--logout">
             <nav class="nav">
                 <ul class="ul">
                     <button @click="logout">
@@ -231,6 +231,17 @@ const logout = () => {
     button {
         border: none;
         background-color: var(--white-color);
+        cursor: pointer;
+        text-align: left;
+    }
+    @media screen and (max-width: 800px) {
+        .admin-sidebar {
+            width: 100%;
+            padding: 16px 32px 0;
+        }
+        .sidebar-item:not(.sidebar-item--logout) {
+            display: none;
+        }
     }
 
 </style>

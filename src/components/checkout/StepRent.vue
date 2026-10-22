@@ -19,7 +19,7 @@
 import TheOptions from '../TheOptions.vue';
 </script>
 
-<style>
+<style scoped>
     .box {
         background-color: var(--white-color);
         padding: 24px;
@@ -39,10 +39,6 @@ import TheOptions from '../TheOptions.vue';
     }   
     .enter-info p {
         color: #90A3BF;
-    }
-    .main {
-        display: flex;
-        gap: 30px;
     }
     
     

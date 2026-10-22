@@ -136,6 +136,15 @@
         gap: 24px;
         width: 100%;
     }
+    .footer-links__item h1 {
+        font-size: 20px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .right-box h1 {
+        font-size: 16px;
+        font-weight: 600;
+    }
     .links-box {
         display: flex;
         flex-direction: column;
@@ -169,18 +178,27 @@
     }
     @media screen and (max-width: 768px) {
         footer {
-            padding: 24px;
+            padding: 32px 24px;
         }
         .footer {
-            display: block;
+            flex-direction: column;
+            gap: 48px;
         }
-        .item1 {
-            margin-left: 200px;
-            margin-top: -190px;
-            width:130px;
+        .footer-logo-box {
+            width: 100%;
         }
         .footer-links {
             display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px 24px;
+        }
+        .right-box {
+            flex-direction: column-reverse;
+            gap: 32px;
+        }
+        .policy-box {
+            justify-content: space-between;
+            gap: 24px;
         }
     }
 </style>

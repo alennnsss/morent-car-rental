@@ -18,16 +18,18 @@
                 <label for="pass">
                     {{ $t('password') }}
                 </label>
-                <input v-model="loginData.password" @blur="v$.password.$touch()" :type="showPassword ? 'text' : 'password'" name="pass">
+                <div class="password-box">
+                    <input v-model="loginData.password" @blur="v$.password.$touch()" :type="showPassword ? 'text' : 'password'" id="pass" name="pass">
+                    <button type="button" class="toggle-btn" @click="togglePassword">{{ showPassword ? 'Hide': 'Show' }}</button>
+                </div>
                 <span v-if="v$.password.$error" class="error-msg">
                     {{ v$.password.$errors[0].$message }}
-                </span>    
-                <button type="button" class="toggle-btn" @click="togglePassword">{{ showPassword ? 'Hide': 'Show' }}</button>
+                </span>
             </div>    
         </div>
-        <Button type="submit" severity="success" variant="outlined">
+        <button type="submit" class="login-btn">
             Login
-        </Button>
+        </button>
     </form>
 </template>
 
@@ -38,7 +40,6 @@ import { helpers, required, minLength } from '@vuelidate/validators';
 import { useRouter } from 'vue-router';
 import { ref, reactive } from 'vue';
 import { useToast } from 'primevue/usetoast';
-import Button from 'primevue/button'
 
 const toast = useToast()
 const showPassword = ref(false)
@@ -108,16 +109,16 @@ const togglePassword = () => {
     .input-box {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
+    }
+    .password-box {
         position: relative;
     }
     input {
-        width: 386px;
         width: 100%;
         height: 56px;
         border-radius: 10px;
-        margin-top: 16px;
-        padding: 16px 32px;
+        padding: 16px 64px 16px 24px;
         border: none;
         background-color: #F6F7F9;
     }
@@ -130,19 +131,20 @@ const togglePassword = () => {
     }
     .toggle-btn {
         position: absolute;
-        right: -20px;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
         background: none;
         border: none;
         color: #666;
         cursor: pointer;
         font-size: 12px;
-        top: 54px;
     }
     .error-msg {
         font-size: 12px;
         color: red;
     }
-    button {
+    .login-btn {
         border: none;
         background-color: #3563E9;
         color: white;
@@ -150,5 +152,19 @@ const togglePassword = () => {
         width: 150px;
         height: 56px;
         margin: 0 auto;
+        cursor: pointer;
+    }
+    .login-btn:hover {
+        background-color: var(--button-color);
+    }
+    .form {
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    @media screen and (max-width: 600px) {
+        .form {
+            padding: 24px;
+        }
     }
 </style>

@@ -157,8 +157,15 @@ const submit = async () => {
         width: 100%;
         padding: 16px 32px;
         display: flex;
-        gap: 20px;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 20px;
         background-color: var(--main-color);
+    }
+    .checkbox label {
+        flex: 1;
+        min-width: 0;
+        cursor: pointer;
     }
     label {
         font-size: 16px;
@@ -176,6 +183,10 @@ const submit = async () => {
         height: 56px;
         color: white;
         border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: var(--button-color);
     }
     .safety {
         display: flex;
@@ -189,7 +200,19 @@ const submit = async () => {
     }
     .error-msg {
         color: red;
-        font-size: 16px;
+        font-size: 14px;
+        flex-basis: 100%;
+    }
+    .confirmation-block > :last-child {
+        align-self: start;
+    }
+    @media screen and (max-width: 600px) {
+        .confirmation {
+            padding: 16px;
+        }
+        .checkbox {
+            padding: 16px;
+        }
     }
     .button {
         max-width: 140px;

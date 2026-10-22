@@ -264,6 +264,7 @@ const formatTime = (date) => {
     .product {
         display: flex;
         justify-content: space-between;
+        gap: 12px;
     }
     .product-image {
         border-radius: 8px;
@@ -432,6 +433,7 @@ const formatTime = (date) => {
     .information {
         display: flex;
         justify-content: space-between;
+        gap: 12px;
     }
     .recent-tran {
         display: flex;
@@ -452,6 +454,7 @@ const formatTime = (date) => {
     .recent-image img {
         width: 114px;
         height: 66px;
+        object-fit: contain;
     }
     .recent-title {
         display: flex;
@@ -499,6 +502,24 @@ const formatTime = (date) => {
     }
 
     @media (max-width: 600px) {
+        main {
+            padding: 16px;
+        }
+        .rental-detail,
+        .recent-tran {
+            padding: 16px;
+        }
+        .recent-image img {
+            width: 80px;
+            height: 48px;
+        }
+        .total-price {
+            align-items: center;
+            gap: 12px;
+        }
+        .price {
+            font-size: 24px;
+        }
         .dount-wrapper {
             max-width: 180px;
         }

@@ -14,6 +14,17 @@
   --white-color: white;
   
 }
+html {
+  color-scheme: light;
+}
+body {
+  background-color: #FFFFFF;
+  color: #1A202C;
+  overflow-x: hidden;
+}
+.p-toast {
+  max-width: calc(100vw - 40px);
+}
 body.dark-theme {
   --main-color: #111827;
   --card-color: #1F2937;

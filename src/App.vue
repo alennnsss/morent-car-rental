@@ -22,6 +22,11 @@ const route = useRoute()
     padding: 64px 32px;
     background-color: #F6F7F9;
   }
+  @media screen and (max-width: 600px) {
+    .container {
+      padding: 24px 16px;
+    }
+  }
 
   .dark-theme .header-search__img,
   .dark-theme .header-option__img {

@@ -8,7 +8,7 @@
     </div>
     <div class="skeleton-image pulse"></div>
     <div class="skeleton-desc pulse"></div>
-    <div class="skeleton-rental pulse">
+    <div class="skeleton-rental">
         <div class="skeleton-price pulse"></div>
         <div class="skeleton-button pulse"></div>
     </div>    
@@ -20,9 +20,11 @@
       height: 388px;
       width: 100%;
       padding: 24px;
-      background-color: #dfdede;
+      background-color: #FFFFFF;
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
+      gap: 16px;
     }
     .skeleton-title {
       width: 20%;
@@ -43,20 +45,22 @@
     }
     .skeleton-rental {
       width: 100%;
-      height: 50px;
+      height: 44px;
+      margin-top: auto;
       display: flex;
+      justify-content: space-between;
+      gap: 16px;
     }
     .skeleton-price {
-      width: 50%;
+      width: 40%;
       height: 30px;
-
     }
     .skeleton-button {
-      width: 50%;
-      height: 30px;
+      width: 40%;
+      height: 44px;
     }
     .pulse {
-      background: linear-gradient(90deg, #cbcccf 0%, #a2acbf 50%, #94abd8 100%);
+      background: linear-gradient(90deg, #EEF1F6 0%, #DCE3EE 50%, #EEF1F6 100%);
       background-size: 200% 100%;
       animation: pulse-animation 1.5s infinite;
       border-radius: 4px;

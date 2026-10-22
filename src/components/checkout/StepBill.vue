@@ -124,7 +124,6 @@ const v$ = useVuelidate(rules, dataStore.profileData)
       background-color: var(--white-color);
       padding: 24px;
       border-radius: 10px;
-      height: 600px;
     }
     .input-container {
         display: flex;
@@ -135,15 +134,22 @@ const v$ = useVuelidate(rules, dataStore.profileData)
         display: flex;
         gap: 32px;
     }
+    .enter-info {
+        gap: 16px;
+    }
 
     .error-msg {
         color: red;
         font-size: 12px;
     }
-    @media screen and (max-width: 380px) {
+    @media screen and (max-width: 600px) {
         .input-item {
             display: flex;
             flex-direction: column;
+            gap: 24px;
+        }
+        input {
+            padding: 16px 20px;
         }
         .box {
             padding:16px;

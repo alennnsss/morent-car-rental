@@ -32,6 +32,7 @@ import TheFilter from '../components/TheFilter.vue';
         }
         .catalog-main {
           width:100%;
+          padding: 0 16px;
         }
     } 
 </style>
