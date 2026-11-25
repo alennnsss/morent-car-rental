@@ -1,0 +1,27 @@
+{
+  "name": "morent-promo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "audio": "python3 audio/synth.py",
+    "stills": "node scripts/stills.mjs",
+    "render": "remotion render MorentReel out/morent-reel.mp4 --codec=h264 --crf=16 --audio-bitrate=320k --pixel-format=yuv420p"
+  },
+  "dependencies": {
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@remotion/cli": "^4.0.547",
+    "@remotion/fonts": "^4.0.547",
+    "@remotion/media": "^4.0.547",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.547"
+  },
+  "devDependencies": {
+    "@remotion/bundler": "^4.0.547",
+    "@remotion/renderer": "^4.0.547",
+    "@types/react": "^19.3.3",
+    "typescript": "^7.0.2"
+  }
+}
