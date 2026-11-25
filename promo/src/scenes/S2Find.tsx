@@ -69,7 +69,8 @@ export const S2Find: React.FC = () => {
     b: Math.max(0, BANNER.y + BANNER.h - carNow.y - carNow.h) * (1 - grow),
   };
 
-  const header = tw(f, 10, 28, 0, 1);
+  const header = tw(f, 12, 30, 0, 1);
+  const headerO = f >= 12 ? 1 : 0; // opaque at once: a fading white bar reads as grey
   const scroll = tw(f, 40, 60, 0, -150, EASE_IO) + tw(f, 90, 106, 0, -420, EASE_IO);
   const out = tw(f, 92, 106, 1, 0);
 
@@ -81,7 +82,7 @@ export const S2Find: React.FC = () => {
 
   return (
     <div style={{ position: "absolute", inset: 0, translate: `0 ${scroll}px`, opacity: out }}>
-      <Header style={{ opacity: header, translate: `0 ${(1 - header) * -60}px` }} />
+      <Header style={{ opacity: headerO, translate: `0 ${(1 - header) * -60}px` }} />
 
       <div
         style={{

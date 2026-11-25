@@ -1,6 +1,7 @@
 import React from "react";
-import { AbsoluteFill, Img, Sequence, useCurrentFrame } from "remotion";
-import { BANNER_CAR, HERO_CAR, PANEL, S, T, toVideo } from "./layout";
+import { Audio } from "@remotion/media";
+import { AbsoluteFill, Img, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { BANNER, BANNER_CAR, HERO_CAR, PANEL, S, T, toVideo } from "./layout";
 import { EASE, EASE_IO, mixRect, rectStyle, tw } from "./motion/ease";
 import { Background, ChapterTitle } from "./motion/elements";
 import { S1Hook } from "./scenes/S1Hook";
@@ -28,7 +29,11 @@ const LandingCar: React.FC = () => {
 // The Morent page: a light sheet holding the real UI, scaled from site px
 const Panel: React.FC = () => {
   const f = useCurrentFrame(); // local, 0 = global 50
-  const bg = tw(f, 16, 26, 0, 1);
+  const bg = tw(f, 12, 28, 0, 1, EASE_IO);
+  // the page wipes open from the hero banner instead of fading through grey
+  const top = (60 + BANNER.y * S) * (1 - bg);
+  const side = BANNER.x * S * (1 - bg);
+  const bottom = (1920 - PANEL.y + 120 - 60 - (BANNER.y + BANNER.h) * S) * (1 - bg);
   const recede = tw(f, T.s5 - 50, T.s5 - 50 + 22, 0, 1, EASE);
   return (
     <div
@@ -40,7 +45,6 @@ const Panel: React.FC = () => {
         height: 1920 - PANEL.y + 120,
         borderRadius: 40,
         overflow: "hidden",
-        background: `rgba(246,247,249,${bg})`,
         boxShadow: `0 40px 120px rgba(0,0,0,${0.5 * bg})`,
         opacity: 1 - recede,
         scale: String(1 - 0.1 * recede),
@@ -49,6 +53,14 @@ const Panel: React.FC = () => {
         maskImage: "linear-gradient(180deg, transparent 0px, black 56px)",
       }}
     >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: C.page,
+          clipPath: `inset(${top}px ${side}px ${bottom}px ${side}px round 24px)`,
+        }}
+      />
       <div style={{ position: "absolute", left: 0, top: 60, width: PANEL.w / S, height: 1400, scale: String(S), transformOrigin: "0 0" }}>
         <Sequence from={0} durationInFrames={106} layout="none">
           <S2Find />
@@ -66,6 +78,8 @@ const Panel: React.FC = () => {
 
 export const Reel: React.FC = () => (
   <AbsoluteFill style={{ background: C.night }}>
+    {/* original soundtrack, synthesized by audio/synth.py */}
+    <Audio src={staticFile("audio/soundtrack.wav")} />
     <Backdrop />
     <Sequence from={0} durationInFrames={T.s1End} layout="none">
       <S1Hook />
